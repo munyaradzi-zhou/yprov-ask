@@ -1,7 +1,7 @@
 # yProv Ask
 
 [![CI](https://github.com/munyaradzi-zhou/yprov-ask/actions/workflows/ci.yml/badge.svg)](https://github.com/munyaradzi-zhou/yprov-ask/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)
+![Python](<https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue>)
 
 Ask questions in plain language about W3C PROV provenance files, and get answers that are
 checked against the files before they are returned.
@@ -73,7 +73,7 @@ Only `ask` needs an API key; every query tool works without one.
 YPROV_ASK_INGEST=samples uv run yprov-ask serve --http --port 8000
 ```
 
-Open <http://127.0.0.1:8000/widget/> (add `?theme=light` or `?theme=dark` to fix the theme),
+Open [http://127.0.0.1:8000/widget/](http://127.0.0.1:8000/widget/) (add `?theme=light` or `?theme=dark` to fix the theme),
 attach a PROV-JSON file with the paper clip, and ask. The widget is a single dependency-free
 web component that embeds in any page:
 
@@ -133,34 +133,34 @@ It runs as an unprivileged user and writes only under `/tmp`.
 
 Settings are read from the environment, or from a `.env` file in the working directory.
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `OPENAI_API_KEY` | | required for `ask` only |
-| `YPROV_ASK_MODEL` | `gpt-4o-mini-2024-07-18` | chat model used by the agent |
-| `YPROV_ASK_DB` | `provqa.sqlite` | SQLite store |
-| `YPROV_ASK_INGEST` | | paths ingested at start-up, separated by the OS path separator |
-| `YPROV_ASK_ROOTS` | the ingest paths | directories the `ingest` tool may read |
-| `YPROV_ASK_RECORDS` | `records` | where answer records are written |
-| `YPROV_ASK_CACHE` | next to the records | where uploaded and fetched files are kept |
-| `YPROV_ASK_CORS` | | browser origins allowed to call `/mcp` |
-| `YPROV_ASK_STORE_HOSTS` | | hosts `store_get` and `open_file` may fetch from |
-| `YPROV_ASK_LOG` | `INFO` | log level |
+| Variable                  | Default                    | Purpose                                                        |
+| ------------------------- | -------------------------- | -------------------------------------------------------------- |
+| `OPENAI_API_KEY`        |                            | required for `ask` only                                      |
+| `YPROV_ASK_MODEL`       | `gpt-4o-mini-2024-07-18` | chat model used by the agent                                   |
+| `YPROV_ASK_DB`          | `provqa.sqlite`          | SQLite store                                                   |
+| `YPROV_ASK_INGEST`      |                            | paths ingested at start-up, separated by the OS path separator |
+| `YPROV_ASK_ROOTS`       | the ingest paths           | directories the `ingest` tool may read                       |
+| `YPROV_ASK_RECORDS`     | `records`                | where answer records are written                               |
+| `YPROV_ASK_CACHE`       | next to the records        | where uploaded and fetched files are kept                      |
+| `YPROV_ASK_CORS`        |                            | browser origins allowed to call `/mcp`                       |
+| `YPROV_ASK_STORE_HOSTS` |                            | hosts `store_get` and `open_file` may fetch from           |
+| `YPROV_ASK_LOG`         | `INFO`                   | log level                                                      |
 
 ## MCP tools
 
-| Tool | Model | Purpose |
-|---|---|---|
-| `ask` | yes | the agent's answer, verdict, tool calls and PROV record |
-| `list_documents` | no | ingested files, their kind and collection |
-| `describe_document` | no | an overview of one file: agents, activities, parameters, metrics, decisions, workflow statistics and an attribute catalogue |
-| `activity_stats` | no | workflow tasks grouped by step, status, module, worker or any attribute |
-| `count_values` | no | every value of an attribute with its count |
-| `search_nodes` | no | find nodes by text, through a vocabulary that explains each match |
-| `get_node` | no | one node with all its attributes and relations |
-| `trace_lineage` | no | walk the graph upstream or downstream |
-| `metric_summary`, `metric_series` | no | logged metrics: summaries across runs, or the raw points |
-| `list_decisions` | no | yProv4Agents decisions with their rule inputs |
-| `open_file`, `store_get`, `ingest` | no | add a file by URL, from an allowed store host, or from an allowed directory |
+| Tool                                     | Model | Purpose                                                                                                                     |
+| ---------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------- |
+| `ask`                                  | yes   | the agent's answer, verdict, tool calls and PROV record                                                                     |
+| `list_documents`                       | no    | ingested files, their kind and collection                                                                                   |
+| `describe_document`                    | no    | an overview of one file: agents, activities, parameters, metrics, decisions, workflow statistics and an attribute catalogue |
+| `activity_stats`                       | no    | workflow tasks grouped by step, status, module, worker or any attribute                                                     |
+| `count_values`                         | no    | every value of an attribute with its count                                                                                  |
+| `search_nodes`                         | no    | find nodes by text, through a vocabulary that explains each match                                                           |
+| `get_node`                             | no    | one node with all its attributes and relations                                                                              |
+| `trace_lineage`                        | no    | walk the graph upstream or downstream                                                                                       |
+| `metric_summary`, `metric_series`    | no    | logged metrics: summaries across runs, or the raw points                                                                    |
+| `list_decisions`                       | no    | yProv4Agents decisions with their rule inputs                                                                               |
+| `open_file`, `store_get`, `ingest` | no    | add a file by URL, from an allowed store host, or from an allowed directory                                                 |
 
 Resources: `prov://documents` and `prov://documents/{doc_id}`.
 
@@ -168,10 +168,10 @@ Resources: `prov://documents` and `prov://documents/{doc_id}`.
 
 On frozen test splits, run once with `gpt-4o-mini`, three phrasings and three repeats:
 
-| Corpus | In-scope correct | Accepted but wrong | Wrongly declined |
-|---|---|---|---|
-| 18 real yProv workflow files | **94.8%** (734/774) | 5.1% | 0 |
-| yProv4ML runs and yProv4Agents records | **88.3%** (437/495) | 11.4% | 0 |
+| Corpus                                 | In-scope correct          | Accepted but wrong | Wrongly declined |
+| -------------------------------------- | ------------------------- | ------------------ | ---------------- |
+| 18 real yProv workflow files           | **94.8%** (734/774) | 5.1%               | 0                |
+| yProv4ML runs and yProv4Agents records | **88.3%** (437/495) | 11.4%              | 0                |
 
 Method, confidence intervals and error analysis: [`docs/evaluation.md`](docs/evaluation.md).
 
@@ -207,9 +207,4 @@ tests/
 ## Acknowledgements
 
 Built on the yProv provenance ecosystem of the
-[HPCI Lab](https://github.com/HPCI-Lab), University of Trento. The grounding check and the
-answer records follow the design of the summariser agent in the yProv4Agents demonstrator.
-
-## License
-
-No license has been chosen yet. Until one is added, all rights are reserved by the author.
+[HPCI Lab](https://github.com/HPCI-Lab), University of Trento.
