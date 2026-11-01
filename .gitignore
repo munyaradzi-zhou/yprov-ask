@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local configuration and secrets
+.env
+
+# Runtime state: the store, answer records and fetched files
+*.sqlite
+records/
+fetched/
+
+# Evaluation inputs and outputs kept outside version control
+data/
+eval/results/
+emissions.csv
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
