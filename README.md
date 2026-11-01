@@ -158,15 +158,6 @@ Settings are read from the environment, or from a `.env` file in the working dir
 
 Resources: `prov://documents` and `prov://documents/{doc_id}`.
 
-## Evaluation
-
-On frozen test splits, run once with `gpt-4o-mini`, three phrasings and three repeats:
-
-| Corpus                                 | In-scope correct          | Accepted but wrong | Wrongly declined |
-| -------------------------------------- | ------------------------- | ------------------ | ---------------- |
-| 18 real yProv workflow files           | **94.8%** (734/774) | 5.1%               | 0                |
-| yProv4ML runs and yProv4Agents records | **88.3%** (437/495) | 11.4%              | 0                |
-
 ## Development
 
 ```bash
