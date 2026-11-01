@@ -1,0 +1,12 @@
+.venv
+__pycache__
+records
+*.sqlite
+.env
+.git
+fetched
+# Not needed in the image
+data
+eval
+docs
+tests
