@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provenance Q&amp;A</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1c2330; --muted: #5d6778; --line: #dde2ea;
+  --accent: #1f5fae; --accent-ink: #ffffff; --ok: #1d7a46; --ok-bg: #e3f4ea;
+  --warn: #9a5b00; --warn-bg: #fdf0d9; --err: #b42318; --err-bg: #fde8e6; --code: #f0f2f6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161d; --panel: #1a2029; --ink: #e5e9f0; --muted: #9aa5b5; --line: #2c3442;
+    --accent: #5b9be6; --accent-ink: #0d1117; --ok: #5fd08f; --ok-bg: #173323;
+    --warn: #f0b45a; --warn-bg: #3a2c12; --err: #ff8a80; --err-bg: #3b1a17; --code: #222a35;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 14px 16px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+header .wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; }
+h1 { font-size: 19px; margin: 0; }
+.sub { color: var(--muted); font-size: 13px; }
+.status { margin-left: auto; font-size: 13px; color: var(--muted); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--muted); margin-right: 6px; vertical-align: 1px; }
+.dot.on { background: var(--ok); } .dot.off { background: var(--err); }
+nav { display: flex; gap: 4px; padding: 12px 16px 0; }
+nav button { border: 1px solid var(--line); border-bottom: none; background: transparent;
+  color: var(--muted); padding: 8px 14px; border-radius: 8px 8px 0 0; cursor: pointer; font: inherit; }
+nav button.on { background: var(--panel); color: var(--ink); font-weight: 600; }
+main { padding: 0 16px 40px; }
+.tab { display: none; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 0 8px 8px 8px; padding: 16px; }
+.tab.on { display: block; }
+textarea, input, select { width: 100%; font: inherit; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+textarea { resize: vertical; min-height: 64px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border: none;
+  border-radius: 6px; padding: 8px 18px; font: inherit; font-weight: 600; cursor: pointer; }
+button.primary:disabled { opacity: .55; cursor: progress; }
+.row { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; flex-wrap: wrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+.chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px;
+  padding: 3px 10px; font-size: 13px; cursor: pointer; font-family: inherit; }
+.chip:hover { border-color: var(--accent); }
+.hint { color: var(--muted); font-size: 13px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-top: 14px; }
+.q { font-weight: 600; margin-bottom: 6px; }
+.answer { overflow-wrap: anywhere; line-height: 1.5; }
+.answer > :first-child { margin-top: 0; }
+.answer > :last-child { margin-bottom: 0; }
+.answer p { margin: 0 0 8px; }
+.answer h3, .answer h4 { margin: 14px 0 4px; line-height: 1.3; }
+.answer h3 { font-size: 16px; }
+.answer h4 { font-size: 15px; }
+.answer ul, .answer ol { margin: 0 0 8px; padding-left: 22px; }
+.answer li { margin: 2px 0; }
+.answer hr { border: 0; border-top: 1px solid var(--line); margin: 12px 0; }
+.answer code { background: var(--code); padding: 1px 4px; border-radius: 4px; }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px;
+  border-radius: 4px; letter-spacing: .02em; }
+.badge.ACCEPT { color: var(--ok); background: var(--ok-bg); }
+.badge.REVISE { color: var(--warn); background: var(--warn-bg); }
+.badge.OUT_OF_SCOPE { color: var(--muted); background: var(--code); }
+.badge.error { color: var(--err); background: var(--err-bg); }
+.meta { color: var(--muted); font-size: 13px; margin-top: 10px; display: flex; gap: 6px 14px;
+  flex-wrap: wrap; align-items: center; }
+details { margin-top: 10px; }
+summary { cursor: pointer; color: var(--accent); font-size: 14px; }
+.steps { list-style: none; padding: 0; margin: 10px 0 0; border-left: 2px solid var(--line); }
+.steps li { position: relative; padding: 0 0 12px 18px; }
+.steps li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--panel); border: 2px solid var(--accent); }
+.steps li.model::before { border-color: var(--warn); }
+.steps li.decide::before { border-color: var(--ok); }
+.steps .who { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.steps .what { font-weight: 600; }
+pre, code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12.5px; }
+pre { background: var(--code); border-radius: 6px; padding: 10px; overflow: auto; max-height: 360px;
+  margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+code { background: var(--code); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; font-size: 13px; }
+tbody tr { cursor: pointer; } tbody tr:hover { background: var(--bg); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+.split { display: grid; grid-template-columns: 240px 1fr; gap: 16px; }
+.toollist button { display: block; width: 100%; text-align: left; border: 1px solid transparent;
+  background: transparent; color: var(--ink); padding: 7px 10px; border-radius: 6px; cursor: pointer;
+  font: inherit; }
+.toollist button.on { border-color: var(--line); background: var(--bg); font-weight: 600; }
+.tag { font-size: 11px; color: var(--muted); display: block; font-weight: 400; }
+.tag.llm { color: var(--warn); }
+label { display: block; font-size: 13px; font-weight: 600; margin-top: 10px; }
+label span { font-weight: 400; color: var(--muted); }
+.err { color: var(--err); }
+@media (max-width: 720px) {
+  .split { grid-template-columns: 1fr; }
+  .status { margin-left: 0; width: 100%; }
+  .hide-sm { display: none; }
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Provenance Q&amp;A</h1>
+  <span class="sub">a LangGraph agent answering questions about W3C PROV records, over MCP</span>
+  <span class="status" id="status"><span class="dot"></span>connecting&hellip;</span>
+</div></header>
+
+<div class="wrap">
+<nav>
+  <button data-tab="ask" class="on">Ask</button>
+  <button data-tab="docs">Documents</button>
+  <button data-tab="tools">Tools</button>
+</nav>
+<main>
+
+<section class="tab on" id="tab-ask">
+  <textarea id="question" placeholder="Ask about the ingested provenance, e.g. why an agent escalated, or a run's final loss"></textarea>
+  <div class="row">
+    <button class="primary" id="ask">Ask</button>
+    <span class="hint">The answer is written by the model, then every figure in it is checked in code
+      against what the tools returned.</span>
+  </div>
+  <div class="chips" id="examples"></div>
+  <div id="answers"></div>
+</section>
+
+<section class="tab" id="tab-docs">
+  <p class="hint">Everything the agent knows comes from these files. Click one to see what the
+    <code>describe_document</code> tool returns for it (plain code, no model).</p>
+  <div class="chips" id="collections"></div>
+  <div class="scroll"><table>
+    <thead><tr><th>document</th><th>collection</th><th>kind</th>
+      <th class="num hide-sm">entities</th><th class="num hide-sm">activities</th>
+      <th class="num hide-sm">relations</th></tr></thead>
+    <tbody id="doclist"></tbody>
+  </table></div>
+  <div id="docdetail"></div>
+</section>
+
+<section class="tab" id="tab-tools">
+  <p class="hint">The tools the MCP server publishes. The agent can only learn about the records
+    through these; you can call them yourself here.</p>
+  <div class="split">
+    <div class="toollist" id="toollist"></div>
+    <div id="toolform"></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+const EXAMPLES = [
+  "Which agent decisions in the faults collection were not ACCEPT?",
+  "Why did the storage agent escalate in the ca1-timeout scenario?",
+  "What was the final validation MSELoss of the run example_GR0_0, and its minimum?",
+  "Which questions have you answered so far, and with what verdict?",
+];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const plain = (v) => (v && typeof v === "object" && "$" in v) ? v.$ : v;
+let TOOLS = [];
+
+async function api(path, body) {
+  const opts = body === undefined ? {} :
+    {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify(body)};
+  const res = await fetch(path, opts);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+const callTool = async (name, args) => (await api(`/api/tools/${name}`, args || {})).result;
+
+document.querySelectorAll("nav button").forEach((b) => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach((x) => x.classList.toggle("on", x === b));
+  document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("on", t.id === "tab-" + b.dataset.tab));
+});
+
+// ---- Ask -------------------------------------------------------------------------------
+EXAMPLES.forEach((q) => {
+  const c = document.createElement("button");
+  c.className = "chip"; c.textContent = q;
+  c.onclick = () => { $("question").value = q; ask(); };
+  $("examples").append(c);
+});
+$("ask").onclick = ask;
+$("question").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(); }
+});
+
+function recordId(path) {
+  return path ? path.split(/[\\/]/).pop().replace(/\.json$/, "") : null;
+}
+
+// The answer's Markdown: headings, lists, rules, paragraphs, **bold** and `code`. The text is
+// escaped first, so only these tags are ever added. (The widget renders it the same way.)
+function renderAnswer(text) {
+  const inline = (s) => esc(s).replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`\n]+)`/g, "<code>$1</code>");
+  const out = [];
+  let list = null, para = false;
+  const end = () => {
+    if (list) out.push(`</${list}>`);
+    if (para) out.push("</p>");
+    list = null; para = false;
+  };
+  for (const line of String(text).replace(/\r\n?/g, "\n").split("\n")) {
+    let m;
+    if (!line.trim()) end();
+    else if ((m = /^ {0,3}(#{1,6})\s+(.*?)[\s#]*$/.exec(line))) {
+      end();
+      const h = m[1].length <= 2 ? "h3" : "h4";
+      out.push(`<${h}>${inline(m[2].replace(/:$/, ""))}</${h}>`);
+    } else if (/^ {0,3}([-*_])(\s*\1){2,}\s*$/.test(line)) { end(); out.push("<hr>"); }
+    else if ((m = /^\s*(?:[-*+•]|(\d{1,3})[.)])\s+(.*)$/.exec(line))) {
+      const tag = m[1] ? "ol" : "ul";
+      if (list !== tag) { end(); out.push(`<${tag}>`); list = tag; }
+      out.push(`<li>${inline(m[2])}</li>`);
+    } else {
+      if (list) end();
+      out.push(para ? "<br>" : "<p>", inline(line.trim()));
+      para = true;
+    }
+  }
+  end();
+  return out.join("");
+}
+
+async function ask() {
+  const q = $("question").value.trim();
+  if (!q) return;
+  $("ask").disabled = true;
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<div class="q">${esc(q)}</div><div class="hint">The agent is querying the records&hellip;</div>`;
+  $("answers").prepend(card);
+  const t0 = performance.now();
+  try {
+    const out = await callTool("ask", {question: q});
+    const g = out.grounding;
+    const rid = recordId(out.record);
+    card.innerHTML = `
+      <div class="q">${esc(q)}</div>
+      <div class="answer">${renderAnswer(out.answer)}</div>
+      <div class="meta">
+        <span class="badge ${esc(out.verdict)}">${esc(out.verdict)}</span>
+        <span>${g.figures_checked} figure(s) checked against tool results, ${g.ungrounded_figures.length} unsupported
+          ${g.ungrounded_figures.length ? "(" + g.ungrounded_figures.map(esc).join(", ") + ")" : ""}</span>
+        <span>${out.tool_calls.length} tool call(s)</span>
+        <span>${esc(out.model)}</span>
+        <span>${out.seconds} s</span>
+      </div>
+      <details><summary>How this answer was produced</summary><div class="trace hint">loading the PROV record&hellip;</div></details>`;
+    if (rid) {
+      card.querySelector("details").addEventListener("toggle", function once(e) {
+        e.target.removeEventListener("toggle", once);
+        showTrace(card.querySelector(".trace"), rid);
+      });
+    }
+  } catch (e) {
+    card.innerHTML = `<div class="q">${esc(q)}</div><span class="badge error">ERROR</span>
+      <span class="err">${esc(e.message)}</span>
+      <div class="hint">after ${((performance.now() - t0) / 1000).toFixed(1)} s</div>`;
+  } finally {
+    $("ask").disabled = false;
+  }
+}
+
+// The steps are read back from the answer's PROV record, not from the answer itself.
+async function showTrace(el, rid) {
+  let doc;
+  try { doc = await api(`/api/documents/${encodeURIComponent(rid)}`); }
+  catch (e) { el.innerHTML = `<span class="err">${esc(e.message)}</span>`; return; }
+  // Receive, then the tool calls in order, then the model's draft, then the decision.
+  const RANK = ["ReceiveTaskActivity", "ToolCallActivity", "ResponseActivity", "DecisionActivity"];
+  const rank = ([id, a]) => [RANK.findIndex((t) => String(plain(a["prov:type"])).endsWith(t)), id];
+  const acts = Object.entries(doc.activity || {}).sort((x, y) => {
+    const [rx, ix] = rank(x), [ry, iy] = rank(y);
+    return rx - ry || ix.localeCompare(iy);
+  });
+  const ents = doc.entity || {};
+  const generated = {};
+  Object.values(doc.wasGeneratedBy || {}).forEach((r) => {
+    (generated[r["prov:activity"]] ||= []).push(ents[r["prov:entity"]]);
+  });
+  const items = acts.map(([id, a]) => {
+    const type = plain(a["prov:type"]) || "";
+    const out = (generated[id] || []).filter(Boolean);
+    if (type.endsWith("ReceiveTaskActivity")) {
+      return step("", "code", "received the question", `<div>${esc(out[0] && out[0]["prov:value"])}</div>`);
+    }
+    if (type.endsWith("ToolCallActivity")) {
+      const result = out[0] ? out[0]["prov:value"] : "";
+      let pretty = result;
+      try { pretty = JSON.stringify(JSON.parse(result), null, 2); } catch (_) { /* truncated */ }
+      return step("", "code, no model", `called <code>${esc(a["yp:tool"])}</code> ${
+          a["yp:outcome"] === "error" ? '<span class="err">(error)</span>' : ""}`,
+        `<div><code>${esc(a["yp:tool_args"])}</code></div>
+         <details><summary>result the model received</summary><pre>${esc(pretty)}</pre></details>`);
+    }
+    if (type.endsWith("ResponseActivity")) {
+      return step("model", "language model", "drafted the answer",
+        `<div class="hint">${esc(a["yp:model"])}, temperature ${esc(plain(a["yp:temperature"]))},
+         ${esc(plain(a["yp:model_calls"]))} model call(s), ${esc(plain(a["yp:prompt_tokens"]))} tokens in,
+         ${esc(plain(a["yp:completion_tokens"]))} out; prompt <code>${esc(String(a["yp:prompt_sha"]).slice(0, 19))}&hellip;</code></div>`);
+    }
+    if (type.endsWith("DecisionActivity")) {
+      const v = plain(a["yp:verdict"]);
+      return step("decide", "code, rule " + esc(a["yp:rule"]),
+        `decided <span class="badge ${esc(v)}">${esc(v)}</span>`,
+        `<div>${esc(a["yp:justification"])}</div>
+         <div class="hint">rule inputs: <code>${esc(a["yp:rule_inputs"])}</code></div>`);
+    }
+    return step("", "", esc(a["prov:label"]), "");
+  });
+  el.className = "trace";
+  el.innerHTML = `<ol class="steps">${items.join("")}</ol>
+    <a href="/api/documents/${encodeURIComponent(rid)}" target="_blank" rel="noopener">open the PROV record <code>${esc(rid)}</code></a>`;
+}
+
+function step(cls, who, what, body) {
+  return `<li class="${cls}"><div class="who">${who}</div><div class="what">${what}</div>${body}</li>`;
+}
+
+// ---- Documents ---------------------------------------------------------------------------
+let DOCS = [];
+async function loadDocs(collection) {
+  const out = await callTool("list_documents", collection ? {collection} : {});
+  DOCS = out.documents;
+  $("doclist").innerHTML = DOCS.map((d) => `<tr data-id="${esc(d.doc_id)}">
+    <td><code>${esc(d.doc_id)}</code></td><td>${esc(d.collection)}</td><td>${esc(d.kind)}</td>
+    <td class="num hide-sm">${d.entities}</td><td class="num hide-sm">${d.activities}</td>
+    <td class="num hide-sm">${d.relations}</td></tr>`).join("");
+  $("doclist").querySelectorAll("tr").forEach((tr) => tr.onclick = async () => {
+    $("docdetail").innerHTML = `<div class="card hint">describe_document&hellip;</div>`;
+    try {
+      const d = await callTool("describe_document", {doc_id: tr.dataset.id});
+      $("docdetail").innerHTML = `<div class="card"><div class="q">describe_document("${esc(tr.dataset.id)}")</div>
+        <pre>${esc(JSON.stringify(d, null, 2))}</pre></div>`;
+      $("docdetail").scrollIntoView({behavior: "smooth", block: "nearest"});
+    } catch (e) { $("docdetail").innerHTML = `<div class="card err">${esc(e.message)}</div>`; }
+  });
+  return out;
+}
+
+function renderCollections(counts, total) {
+  const all = [["", `all (${total})`], ...Object.entries(counts).map(([k, n]) => [k, `${k} (${n})`])];
+  $("collections").innerHTML = "";
+  all.forEach(([key, text]) => {
+    const c = document.createElement("button");
+    c.className = "chip"; c.textContent = text;
+    c.onclick = () => loadDocs(key);
+    $("collections").append(c);
+  });
+}
+
+// ---- Tools -------------------------------------------------------------------------------
+function renderTools() {
+  $("toollist").innerHTML = "";
+  TOOLS.forEach((t, i) => {
+    const b = document.createElement("button");
+    const llm = t.name === "ask";
+    b.innerHTML = `${esc(t.name)}<span class="tag ${llm ? "llm" : ""}">${
+      llm ? "LangGraph agent + language model" : t.read_only ? "plain code, read-only" : "plain code, writes the store"}</span>`;
+    b.onclick = () => selectTool(i);
+    $("toollist").append(b);
+  });
+  selectTool(0);
+}
+
+function fieldType(schema) {
+  const options = schema.anyOf ? schema.anyOf.filter((s) => s.type !== "null") : [schema];
+  return options[0] || {};
+}
+
+function selectTool(i) {
+  const t = TOOLS[i];
+  $("toollist").querySelectorAll("button").forEach((b, j) => b.classList.toggle("on", i === j));
+  const props = (t.input_schema && t.input_schema.properties) || {};
+  const required = new Set((t.input_schema && t.input_schema.required) || []);
+  const fields = Object.entries(props).map(([name, s]) => {
+    const f = fieldType(s);
+    const note = required.has(name) ? "required" : "optional" + ("default" in s && s.default !== null ? `, default ${s.default}` : "");
+    const input = f.enum
+      ? `<select data-name="${esc(name)}"><option value=""></option>${f.enum.map((v) => `<option>${esc(v)}</option>`).join("")}</select>`
+      : `<input data-name="${esc(name)}" data-type="${esc(f.type || "string")}" ${f.type === "integer" || f.type === "number" ? 'type="number"' : ""}>`;
+    return `<label>${esc(name)} <span>${esc(f.type || "")}, ${note}</span></label>${input}`;
+  }).join("");
+  $("toolform").innerHTML = `<div class="q"><code>${esc(t.name)}</code></div>
+    <pre>${esc(t.description)}</pre>${fields || '<p class="hint">No arguments.</p>'}
+    <div class="row"><button class="primary" id="run">Run</button><span class="hint" id="took"></span></div>
+    <div id="toolout"></div>`;
+  $("run").onclick = async () => {
+    const args = {};
+    $("toolform").querySelectorAll("[data-name]").forEach((el) => {
+      if (el.value === "") return;
+      const type = el.dataset.type;
+      args[el.dataset.name] = type === "integer" || type === "number" ? Number(el.value) : el.value;
+    });
+    $("run").disabled = true;
+    const t0 = performance.now();
+    try {
+      const out = await callTool(t.name, args);
+      $("toolout").innerHTML = `<pre>${esc(JSON.stringify(out, null, 2))}</pre>`;
+    } catch (e) {
+      $("toolout").innerHTML = `<pre class="err">${esc(e.message)}</pre>`;
+    } finally {
+      $("took").textContent = `${t.name}(${JSON.stringify(args)}) in ${Math.round(performance.now() - t0)} ms`;
+      $("run").disabled = false;
+    }
+  };
+}
+
+// ---- Start -------------------------------------------------------------------------------
+(async () => {
+  try {
+    const info = await api("/api/server");
+    TOOLS = info.tools;
+    const docs = await loadDocs("");
+    renderCollections(docs.collections, docs.total);
+    renderTools();
+    $("status").innerHTML = `<span class="dot on"></span>connected to ${esc(info.name)} ${esc(info.version)}
+      over ${esc(info.transport)} &middot; ${docs.total} documents &middot; ${TOOLS.length} tools`;
+  } catch (e) {
+    $("status").innerHTML = `<span class="dot off"></span><span class="err">${esc(e.message)}</span>`;
+  }
+})();
+</script>
+</body>
+</html>
