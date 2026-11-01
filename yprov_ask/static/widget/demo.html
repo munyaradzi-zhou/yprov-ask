@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yProv Ask</title>
+<!--
+  The widget on a page of its own, laid out like a search page: the name, the question pill
+  under it, and the chat below. Open a PROV-JSON file with the paper clip in the pill (or
+  pass ?file=<url> to open one by URL), then ask about it; ?theme=light or ?theme=dark fixes
+  the theme. The same element goes into the yProv Explorer, which hands it the file it has open.
+-->
+<style>
+:root { --bg: #f1efe9; }
+@media (prefers-color-scheme: dark) { :root { --bg: #1d1c1a; } }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); display: flex; flex-direction: column;
+  font: 13px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+yprov-ask { flex: 1; min-height: 0; }
+</style>
+</head>
+<body>
+<yprov-ask endpoint="/mcp" file-picker></yprov-ask>
+<script src="yprov-ask.js"></script>
+<script>
+  const theme = new URLSearchParams(location.search).get("theme");
+  if (theme === "light" || theme === "dark") {
+    document.documentElement.style.colorScheme = theme;
+    document.documentElement.style.setProperty("--bg", theme === "light" ? "#f1efe9" : "#1d1c1a");
+    document.querySelector("yprov-ask").setAttribute("theme", theme);
+  }
+</script>
+</body>
+</html>
