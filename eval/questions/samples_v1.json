@@ -1,0 +1,2653 @@
+{
+ "version": "samples_v1",
+ "data_dir": "samples",
+ "items": [
+  {
+   "id": "ml-duration/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-duration",
+   "category": "duration",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How long did the run prov_example_GR0_0 take?",
+    "What was the total duration of the training run prov_example_GR0_0?",
+    "runtime of prov_example_GR0_0"
+   ],
+   "gold": "7.809871 s (2026-05-20 10:10:05.005879 to 2026-05-20 10:10:12.815750)",
+   "check": {
+    "type": "figure",
+    "value": 7.809871,
+    "rel": 0.02
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-step-duration/prov_example_GR0_0",
+   "split": "dev",
+   "type": "ml-step-duration",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which step of prov_example_GR0_0 took the longest to run?",
+    "How long did the Training step of prov_example_GR0_0 take?",
+    "slowest step in prov_example_GR0_0"
+   ],
+   "gold": "not recorded: Training, Validation and the other steps have a start time only; only the whole run has a duration (7.809871 s)",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-failures/prov_example_GR0_0",
+   "split": "dev",
+   "type": "ml-failures",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Did anything fail in prov_example_GR0_0?",
+    "Were there any errors during the run prov_example_GR0_0?",
+    "failures in prov_example_GR0_0?"
+   ],
+   "gold": "not recorded: no activity of the run records a status",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-loss-value/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-loss-value",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "What was the final validation loss of prov_example_GR0_0?",
+    "What validation loss did prov_example_GR0_0 end with?",
+    "final validation loss prov_example_GR0_0"
+   ],
+   "gold": "not in this file: the values of MSELoss/MSELoss/Validation are in prov/example_0/metrics_GR0/MSELoss_Validation_MSELoss_GR0.csv, a separate CSV",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-metric-count/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-metric-count",
+   "category": "count",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How many metrics did prov_example_GR0_0 log?",
+    "What is the number of metric series recorded for prov_example_GR0_0?",
+    "number of metrics in prov_example_GR0_0"
+   ],
+   "gold": "19",
+   "check": {
+    "type": "figure",
+    "value": 19,
+    "rel": 0.0
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-model-count/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-model-count",
+   "category": "count",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How many model entities does prov_example_GR0_0 record?",
+    "How many models or checkpoints were saved in prov_example_GR0_0?",
+    "model count prov_example_GR0_0"
+   ],
+   "gold": "10",
+   "check": {
+    "type": "figure",
+    "value": 10,
+    "rel": 0.0
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-optimizer/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-optimizer",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which optimizer did prov_example_GR0_0 use?",
+    "What optimisation algorithm trained the model in prov_example_GR0_0?",
+    "optimizer of prov_example_GR0_0"
+   ],
+   "gold": "Adam",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Adam"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-datasets/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-datasets",
+   "category": "lineage",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which datasets did prov_example_GR0_0 use?",
+    "What data went into the run prov_example_GR0_0?",
+    "datasets of prov_example_GR0_0"
+   ],
+   "gold": "train_dataset, val_dataset",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "train_dataset",
+     "val_dataset"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe",
+    "lineage"
+   ]
+  },
+  {
+   "id": "ml-python/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-python",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which Python version ran prov_example_GR0_0?",
+    "What version of Python was prov_example_GR0_0 executed with?",
+    "python version prov_example_GR0_0"
+   ],
+   "gold": "3.13.11",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "3.13.11"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-start/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-start",
+   "category": "time",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "When did the run prov_example_GR0_0 start?",
+    "At what time did prov_example_GR0_0 begin?",
+    "start time of prov_example_GR0_0"
+   ],
+   "gold": "2026-05-20 10:10:05.005879",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "10:10:05"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-os/prov_example_GR0_0",
+   "split": "dev",
+   "type": "ml-os",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "On which operating system did prov_example_GR0_0 run?",
+    "What OS was prov_example_GR0_0 executed on?",
+    "os of prov_example_GR0_0"
+   ],
+   "gold": "Darwin",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "Darwin",
+     "macOS"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-script/prov_example_GR0_0",
+   "split": "test",
+   "type": "ml-script",
+   "category": "lineage",
+   "files": [
+    "yprov4ml/example_0/prov_example_GR0_0.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which script was executed for prov_example_GR0_0?",
+    "What command started the run prov_example_GR0_0?",
+    "script of prov_example_GR0_0"
+   ],
+   "gold": "python /workspace/example_0/artifacts/prov4ml_torch.py",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "prov4ml_torch.py"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-duration/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-duration",
+   "category": "duration",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How long did the run prov_example_GR0_2 take?",
+    "What was the total duration of the training run prov_example_GR0_2?",
+    "runtime of prov_example_GR0_2"
+   ],
+   "gold": "112.52891 s (2026-05-20 10:00:53.406324 to 2026-05-20 10:02:45.935234)",
+   "check": {
+    "type": "figure",
+    "value": 112.52891,
+    "rel": 0.02
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-step-duration/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-step-duration",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which step of prov_example_GR0_2 took the longest to run?",
+    "How long did the Training step of prov_example_GR0_2 take?",
+    "slowest step in prov_example_GR0_2"
+   ],
+   "gold": "not recorded: Training, Validation and the other steps have a start time only; only the whole run has a duration (112.52891 s)",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-failures/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-failures",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Did anything fail in prov_example_GR0_2?",
+    "Were there any errors during the run prov_example_GR0_2?",
+    "failures in prov_example_GR0_2?"
+   ],
+   "gold": "not recorded: no activity of the run records a status",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-loss-value/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-loss-value",
+   "category": "absent",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "What was the final training loss of prov_example_GR0_2?",
+    "What training loss did prov_example_GR0_2 end with?",
+    "final training loss prov_example_GR0_2"
+   ],
+   "gold": "not in this file: the values of CrossEntropyLoss/CrossEntropyLoss/Training are in prov/example_2/metrics_GR0/CrossEntropyLoss_Training_CrossEntropyLoss_GR0.csv, a separate CSV",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-metric-count/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-metric-count",
+   "category": "count",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How many metrics did prov_example_GR0_2 log?",
+    "What is the number of metric series recorded for prov_example_GR0_2?",
+    "number of metrics in prov_example_GR0_2"
+   ],
+   "gold": "52",
+   "check": {
+    "type": "figure",
+    "value": 52,
+    "rel": 0.0
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-model-count/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-model-count",
+   "category": "count",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "How many model entities does prov_example_GR0_2 record?",
+    "How many models or checkpoints were saved in prov_example_GR0_2?",
+    "model count prov_example_GR0_2"
+   ],
+   "gold": "14",
+   "check": {
+    "type": "figure",
+    "value": 14,
+    "rel": 0.0
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-optimizer/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-optimizer",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which optimizer did prov_example_GR0_2 use?",
+    "What optimisation algorithm trained the model in prov_example_GR0_2?",
+    "optimizer of prov_example_GR0_2"
+   ],
+   "gold": "Adam",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Adam"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-datasets/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-datasets",
+   "category": "lineage",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which datasets did prov_example_GR0_2 use?",
+    "What data went into the run prov_example_GR0_2?",
+    "datasets of prov_example_GR0_2"
+   ],
+   "gold": "test_dataset, train_dataset, val_dataset",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "test_dataset",
+     "train_dataset",
+     "val_dataset"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe",
+    "lineage"
+   ]
+  },
+  {
+   "id": "ml-python/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-python",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which Python version ran prov_example_GR0_2?",
+    "What version of Python was prov_example_GR0_2 executed with?",
+    "python version prov_example_GR0_2"
+   ],
+   "gold": "3.13.11",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "3.13.11"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-start/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-start",
+   "category": "time",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "When did the run prov_example_GR0_2 start?",
+    "At what time did prov_example_GR0_2 begin?",
+    "start time of prov_example_GR0_2"
+   ],
+   "gold": "2026-05-20 10:00:53.406324",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "10:00:53"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-os/prov_example_GR0_2",
+   "split": "test",
+   "type": "ml-os",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "On which operating system did prov_example_GR0_2 run?",
+    "What OS was prov_example_GR0_2 executed on?",
+    "os of prov_example_GR0_2"
+   ],
+   "gold": "Darwin",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "Darwin",
+     "macOS"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-script/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-script",
+   "category": "lineage",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which script was executed for prov_example_GR0_2?",
+    "What command started the run prov_example_GR0_2?",
+    "script of prov_example_GR0_2"
+   ],
+   "gold": "python /workspace/example_2/artifacts/prov4ml_torch.py",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "prov4ml_torch.py"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ml-scheduler/prov_example_GR0_2",
+   "split": "dev",
+   "type": "ml-scheduler",
+   "category": "attribute",
+   "files": [
+    "yprov4ml/example_2/prov_example_GR0_2.json"
+   ],
+   "producer": [
+    "yprov4ml"
+   ],
+   "phrasings": [
+    "Which learning-rate scheduler did prov_example_GR0_2 use?",
+    "Was a scheduler used in prov_example_GR0_2, and which?",
+    "scheduler prov_example_GR0_2"
+   ],
+   "gold": "CosineAnnealingLR",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "CosineAnnealingLR"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-verdict/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in ca1-incomplete__ca1?",
+    "What verdict does the record ca1-incomplete__ca1 contain?",
+    "verdict of ca1-incomplete__ca1"
+   ],
+   "gold": "ESCALATE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ESCALATE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record ca1-incomplete__ca1?",
+    "Who made the decision recorded in ca1-incomplete__ca1?",
+    "agent in ca1-incomplete__ca1"
+   ],
+   "gold": "StorageAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "StorageAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in ca1-incomplete__ca1?",
+    "By what rule was the verdict of ca1-incomplete__ca1 reached?",
+    "rule of ca1-incomplete__ca1"
+   ],
+   "gold": "ca1.persist/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca1.persist/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide ESCALATE in ca1-incomplete__ca1?",
+    "What caused the verdict ESCALATE in ca1-incomplete__ca1?",
+    "why escalate in ca1-incomplete__ca1"
+   ],
+   "gold": "an envelope of the record never arrived",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "missing",
+     "never arrived",
+     "did not arrive",
+     "didn't arrive",
+     "incomplete"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-stored/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-stored",
+   "category": "lineage",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Under which PID was the record stored in ca1-incomplete__ca1, and how big was it?",
+    "Where did the storage agent put the record in ca1-incomplete__ca1, and what size?",
+    "pid and size in ca1-incomplete__ca1"
+   ],
+   "gold": "21.T11999/yprovstore-abfe4946dd38, 21634 bytes",
+   "check": {
+    "type": "figure_and_terms",
+    "value": 21634,
+    "rel": 0,
+    "terms": [
+     "21.T11999/yprovstore-abfe4946dd38"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-cost/ca1-incomplete__ca1",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/ca1-incomplete__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in ca1-incomplete__ca1 cost?",
+    "What was the monetary cost of the run in ca1-incomplete__ca1?",
+    "cost of ca1-incomplete__ca1"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/ca1-integrity__ca1",
+   "split": "dev",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in ca1-integrity__ca1?",
+    "What verdict does the record ca1-integrity__ca1 contain?",
+    "verdict of ca1-integrity__ca1"
+   ],
+   "gold": "ESCALATE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ESCALATE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/ca1-integrity__ca1",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record ca1-integrity__ca1?",
+    "Who made the decision recorded in ca1-integrity__ca1?",
+    "agent in ca1-integrity__ca1"
+   ],
+   "gold": "StorageAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "StorageAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/ca1-integrity__ca1",
+   "split": "dev",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in ca1-integrity__ca1?",
+    "By what rule was the verdict of ca1-integrity__ca1 reached?",
+    "rule of ca1-integrity__ca1"
+   ],
+   "gold": "ca1.persist/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca1.persist/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/ca1-integrity__ca1",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide ESCALATE in ca1-integrity__ca1?",
+    "What caused the verdict ESCALATE in ca1-integrity__ca1?",
+    "why escalate in ca1-integrity__ca1"
+   ],
+   "gold": "the integrity check failed",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "integrity"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-stored/ca1-integrity__ca1",
+   "split": "test",
+   "type": "ag-stored",
+   "category": "lineage",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Under which PID was the record stored in ca1-integrity__ca1, and how big was it?",
+    "Where did the storage agent put the record in ca1-integrity__ca1, and what size?",
+    "pid and size in ca1-integrity__ca1"
+   ],
+   "gold": "21.T11999/yprovstore-abfe4946dd38, 21634 bytes",
+   "check": {
+    "type": "figure_and_terms",
+    "value": 21634,
+    "rel": 0,
+    "terms": [
+     "21.T11999/yprovstore-abfe4946dd38"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-cost/ca1-integrity__ca1",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/ca1-integrity__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in ca1-integrity__ca1 cost?",
+    "What was the monetary cost of the run in ca1-integrity__ca1?",
+    "cost of ca1-integrity__ca1"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/ca1-timeout__ca1",
+   "split": "dev",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in ca1-timeout__ca1?",
+    "What verdict does the record ca1-timeout__ca1 contain?",
+    "verdict of ca1-timeout__ca1"
+   ],
+   "gold": "ESCALATE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ESCALATE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/ca1-timeout__ca1",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record ca1-timeout__ca1?",
+    "Who made the decision recorded in ca1-timeout__ca1?",
+    "agent in ca1-timeout__ca1"
+   ],
+   "gold": "StorageAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "StorageAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/ca1-timeout__ca1",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in ca1-timeout__ca1?",
+    "By what rule was the verdict of ca1-timeout__ca1 reached?",
+    "rule of ca1-timeout__ca1"
+   ],
+   "gold": "ca1.persist/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca1.persist/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/ca1-timeout__ca1",
+   "split": "dev",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide ESCALATE in ca1-timeout__ca1?",
+    "What caused the verdict ESCALATE in ca1-timeout__ca1?",
+    "why escalate in ca1-timeout__ca1"
+   ],
+   "gold": "a timeout: no consumer acknowledged",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "timeout"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-stored/ca1-timeout__ca1",
+   "split": "test",
+   "type": "ag-stored",
+   "category": "lineage",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Under which PID was the record stored in ca1-timeout__ca1, and how big was it?",
+    "Where did the storage agent put the record in ca1-timeout__ca1, and what size?",
+    "pid and size in ca1-timeout__ca1"
+   ],
+   "gold": "21.T11999/yprovstore-abfe4946dd38, 21634 bytes",
+   "check": {
+    "type": "figure_and_terms",
+    "value": 21634,
+    "rel": 0,
+    "terms": [
+     "21.T11999/yprovstore-abfe4946dd38"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-cost/ca1-timeout__ca1",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/ca1-timeout__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in ca1-timeout__ca1 cost?",
+    "What was the monetary cost of the run in ca1-timeout__ca1?",
+    "cost of ca1-timeout__ca1"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/ca2-accept__ca2",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca2-accept__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in ca2-accept__ca2?",
+    "What verdict does the record ca2-accept__ca2 contain?",
+    "verdict of ca2-accept__ca2"
+   ],
+   "gold": "ACCEPT",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ACCEPT"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/ca2-accept__ca2",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/ca2-accept__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record ca2-accept__ca2?",
+    "Who made the decision recorded in ca2-accept__ca2?",
+    "agent in ca2-accept__ca2"
+   ],
+   "gold": "Metrics_Visualizer",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Metrics_Visualizer"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/ca2-accept__ca2",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca2-accept__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in ca2-accept__ca2?",
+    "By what rule was the verdict of ca2-accept__ca2 reached?",
+    "rule of ca2-accept__ca2"
+   ],
+   "gold": "ca2.chart/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca2.chart/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/ca2-accept__ca2",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/ca2-accept__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in ca2-accept__ca2 cost?",
+    "What was the monetary cost of the run in ca2-accept__ca2?",
+    "cost of ca2-accept__ca2"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/ca3-ok__ca3",
+   "split": "dev",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca3-ok__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in ca3-ok__ca3?",
+    "What verdict does the record ca3-ok__ca3 contain?",
+    "verdict of ca3-ok__ca3"
+   ],
+   "gold": "OK",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "OK"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/ca3-ok__ca3",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/ca3-ok__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record ca3-ok__ca3?",
+    "Who made the decision recorded in ca3-ok__ca3?",
+    "agent in ca3-ok__ca3"
+   ],
+   "gold": "Analytics_Agent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Analytics_Agent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/ca3-ok__ca3",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/ca3-ok__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in ca3-ok__ca3?",
+    "By what rule was the verdict of ca3-ok__ca3 reached?",
+    "rule of ca3-ok__ca3"
+   ],
+   "gold": "ca3.timing-outlier/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca3.timing-outlier/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/ca3-ok__ca3",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/ca3-ok__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in ca3-ok__ca3 cost?",
+    "What was the monetary cost of the run in ca3-ok__ca3?",
+    "cost of ca3-ok__ca3"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/cax-revise__cax",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/cax-revise__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in cax-revise__cax?",
+    "What verdict does the record cax-revise__cax contain?",
+    "verdict of cax-revise__cax"
+   ],
+   "gold": "REVISE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "REVISE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/cax-revise__cax",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/cax-revise__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record cax-revise__cax?",
+    "Who made the decision recorded in cax-revise__cax?",
+    "agent in cax-revise__cax"
+   ],
+   "gold": "NL_Summarizer",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "NL_Summarizer"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/cax-revise__cax",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/cax-revise__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in cax-revise__cax?",
+    "By what rule was the verdict of cax-revise__cax reached?",
+    "rule of cax-revise__cax"
+   ],
+   "gold": "cax.summary/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "cax.summary/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/cax-revise__cax",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/cax-revise__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide REVISE in cax-revise__cax?",
+    "What caused the verdict REVISE in cax-revise__cax?",
+    "why revise in cax-revise__cax"
+   ],
+   "gold": "figures 4096 and 512 not in the graph",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "4096",
+     "512",
+     "ungrounded"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/cax-revise__cax",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/cax-revise__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in cax-revise__cax cost?",
+    "What was the monetary cost of the run in cax-revise__cax?",
+    "cost of cax-revise__cax"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/mc1-unjustified__mc1",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc1-unjustified__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in mc1-unjustified__mc1?",
+    "What verdict does the record mc1-unjustified__mc1 contain?",
+    "verdict of mc1-unjustified__mc1"
+   ],
+   "gold": "FAIL",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "FAIL"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/mc1-unjustified__mc1",
+   "split": "dev",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/mc1-unjustified__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record mc1-unjustified__mc1?",
+    "Who made the decision recorded in mc1-unjustified__mc1?",
+    "agent in mc1-unjustified__mc1"
+   ],
+   "gold": "ComplianceChecker",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ComplianceChecker"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/mc1-unjustified__mc1",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc1-unjustified__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in mc1-unjustified__mc1?",
+    "By what rule was the verdict of mc1-unjustified__mc1 reached?",
+    "rule of mc1-unjustified__mc1"
+   ],
+   "gold": "mc1.compliance/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "mc1.compliance/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/mc1-unjustified__mc1",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc1-unjustified__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide FAIL in mc1-unjustified__mc1?",
+    "What caused the verdict FAIL in mc1-unjustified__mc1?",
+    "why fail in mc1-unjustified__mc1"
+   ],
+   "gold": "a decision without a justification",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "justification",
+     "unjustified",
+     "not justified",
+     "decision-justified"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/mc1-unjustified__mc1",
+   "split": "dev",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/mc1-unjustified__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in mc1-unjustified__mc1 cost?",
+    "What was the monetary cost of the run in mc1-unjustified__mc1?",
+    "cost of mc1-unjustified__mc1"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/mc3-untimed__mc3",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc3-untimed__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in mc3-untimed__mc3?",
+    "What verdict does the record mc3-untimed__mc3 contain?",
+    "verdict of mc3-untimed__mc3"
+   ],
+   "gold": "PARTIAL",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "PARTIAL"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/mc3-untimed__mc3",
+   "split": "dev",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/mc3-untimed__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record mc3-untimed__mc3?",
+    "Who made the decision recorded in mc3-untimed__mc3?",
+    "agent in mc3-untimed__mc3"
+   ],
+   "gold": "AuditabilityAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "AuditabilityAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/mc3-untimed__mc3",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc3-untimed__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in mc3-untimed__mc3?",
+    "By what rule was the verdict of mc3-untimed__mc3 reached?",
+    "rule of mc3-untimed__mc3"
+   ],
+   "gold": "mc3.trail/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "mc3.trail/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/mc3-untimed__mc3",
+   "split": "dev",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/mc3-untimed__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide PARTIAL in mc3-untimed__mc3?",
+    "What caused the verdict PARTIAL in mc3-untimed__mc3?",
+    "why partial in mc3-untimed__mc3"
+   ],
+   "gold": "an activity with no timestamps",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "time",
+     "times",
+     "timestamp",
+     "timestamps",
+     "untimed",
+     "timing"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/mc3-untimed__mc3",
+   "split": "test",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/mc3-untimed__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in mc3-untimed__mc3 cost?",
+    "What was the monetary cost of the run in mc3-untimed__mc3?",
+    "cost of mc3-untimed__mc3"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/stream-gap__cax",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/faults/stream-gap__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in stream-gap__cax?",
+    "What verdict does the record stream-gap__cax contain?",
+    "verdict of stream-gap__cax"
+   ],
+   "gold": "INCOMPLETE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "INCOMPLETE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/stream-gap__cax",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/faults/stream-gap__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record stream-gap__cax?",
+    "Who made the decision recorded in stream-gap__cax?",
+    "agent in stream-gap__cax"
+   ],
+   "gold": "NL_Summarizer",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "NL_Summarizer"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/stream-gap__cax",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/faults/stream-gap__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in stream-gap__cax?",
+    "By what rule was the verdict of stream-gap__cax reached?",
+    "rule of stream-gap__cax"
+   ],
+   "gold": "stream.incomplete/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "stream.incomplete/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/stream-gap__cax",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/faults/stream-gap__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide INCOMPLETE in stream-gap__cax?",
+    "What caused the verdict INCOMPLETE in stream-gap__cax?",
+    "why incomplete in stream-gap__cax"
+   ],
+   "gold": "an envelope of the record never arrived",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "missing",
+     "never arrived",
+     "did not arrive",
+     "didn't arrive",
+     "incomplete"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-cost/stream-gap__cax",
+   "split": "dev",
+   "type": "ag-cost",
+   "category": "absent",
+   "files": [
+    "agents/faults/stream-gap__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "How much did the agent's work in stream-gap__cax cost?",
+    "What was the monetary cost of the run in stream-gap__cax?",
+    "cost of stream-gap__cax"
+   ],
+   "gold": "not recorded",
+   "check": {
+    "type": "not_recorded"
+   },
+   "expect": "ABSENT",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__ca1",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__ca1?",
+    "What verdict does the record example_0__ca1 contain?",
+    "verdict of example_0__ca1"
+   ],
+   "gold": "ACCEPT",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ACCEPT"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__ca1",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__ca1?",
+    "Who made the decision recorded in example_0__ca1?",
+    "agent in example_0__ca1"
+   ],
+   "gold": "StorageAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "StorageAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__ca1",
+   "split": "dev",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__ca1?",
+    "By what rule was the verdict of example_0__ca1 reached?",
+    "rule of example_0__ca1"
+   ],
+   "gold": "ca1.persist/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca1.persist/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-stored/example_0__ca1",
+   "split": "test",
+   "type": "ag-stored",
+   "category": "lineage",
+   "files": [
+    "agents/reference/example_0__ca1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Under which PID was the record stored in example_0__ca1, and how big was it?",
+    "Where did the storage agent put the record in example_0__ca1, and what size?",
+    "pid and size in example_0__ca1"
+   ],
+   "gold": "21.T11999/yprovstore-abfe4946dd38, 21634 bytes",
+   "check": {
+    "type": "figure_and_terms",
+    "value": 21634,
+    "rel": 0,
+    "terms": [
+     "21.T11999/yprovstore-abfe4946dd38"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__ca2",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__ca2?",
+    "What verdict does the record example_0__ca2 contain?",
+    "verdict of example_0__ca2"
+   ],
+   "gold": "REVISE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "REVISE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__ca2",
+   "split": "dev",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__ca2?",
+    "Who made the decision recorded in example_0__ca2?",
+    "agent in example_0__ca2"
+   ],
+   "gold": "Metrics_Visualizer",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Metrics_Visualizer"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__ca2",
+   "split": "dev",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__ca2?",
+    "By what rule was the verdict of example_0__ca2 reached?",
+    "rule of example_0__ca2"
+   ],
+   "gold": "ca2.chart/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca2.chart/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/example_0__ca2",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca2_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide REVISE in example_0__ca2?",
+    "What caused the verdict REVISE in example_0__ca2?",
+    "why revise in example_0__ca2"
+   ],
+   "gold": "no numeric values to plot",
+   "check": {
+    "type": "any_terms",
+    "terms": [
+     "no numeric",
+     "composition",
+     "graph composition"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__ca3",
+   "split": "dev",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__ca3?",
+    "What verdict does the record example_0__ca3 contain?",
+    "verdict of example_0__ca3"
+   ],
+   "gold": "ANOMALY",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ANOMALY"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__ca3",
+   "split": "dev",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__ca3?",
+    "Who made the decision recorded in example_0__ca3?",
+    "agent in example_0__ca3"
+   ],
+   "gold": "Analytics_Agent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "Analytics_Agent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__ca3",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__ca3?",
+    "By what rule was the verdict of example_0__ca3 reached?",
+    "rule of example_0__ca3"
+   ],
+   "gold": "ca3.timing-outlier/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ca3.timing-outlier/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-why/example_0__ca3",
+   "split": "test",
+   "type": "ag-why",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Why did the agent decide ANOMALY in example_0__ca3?",
+    "What caused the verdict ANOMALY in example_0__ca3?",
+    "why anomaly in example_0__ca3"
+   ],
+   "gold": "a timing gap of 5.049196 s",
+   "check": {
+    "type": "figure",
+    "value": 5.049196,
+    "rel": 0.02
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__cax",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__cax?",
+    "What verdict does the record example_0__cax contain?",
+    "verdict of example_0__cax"
+   ],
+   "gold": "ACCEPT",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ACCEPT"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__cax",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__cax?",
+    "Who made the decision recorded in example_0__cax?",
+    "agent in example_0__cax"
+   ],
+   "gold": "NL_Summarizer",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "NL_Summarizer"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__cax",
+   "split": "dev",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__cax_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__cax?",
+    "By what rule was the verdict of example_0__cax reached?",
+    "rule of example_0__cax"
+   ],
+   "gold": "cax.summary/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "cax.summary/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__ca1__mc1",
+   "split": "dev",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__ca1__mc1?",
+    "What verdict does the record example_0__ca1__mc1 contain?",
+    "verdict of example_0__ca1__mc1"
+   ],
+   "gold": "PASS",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "PASS"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__ca1__mc1",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__ca1__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__ca1__mc1?",
+    "Who made the decision recorded in example_0__ca1__mc1?",
+    "agent in example_0__ca1__mc1"
+   ],
+   "gold": "ComplianceChecker",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "ComplianceChecker"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__ca1__mc1",
+   "split": "dev",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1__mc1_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__ca1__mc1?",
+    "By what rule was the verdict of example_0__ca1__mc1 reached?",
+    "rule of example_0__ca1__mc1"
+   ],
+   "gold": "mc1.compliance/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "mc1.compliance/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-verdict/example_0__ca1__mc3",
+   "split": "test",
+   "type": "ag-verdict",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "What did the agent decide in example_0__ca1__mc3?",
+    "What verdict does the record example_0__ca1__mc3 contain?",
+    "verdict of example_0__ca1__mc3"
+   ],
+   "gold": "COMPLETE",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "COMPLETE"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "ag-agent/example_0__ca1__mc3",
+   "split": "test",
+   "type": "ag-agent",
+   "category": "attribute",
+   "files": [
+    "agents/reference/example_0__ca1__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which agent produced the record example_0__ca1__mc3?",
+    "Who made the decision recorded in example_0__ca1__mc3?",
+    "agent in example_0__ca1__mc3"
+   ],
+   "gold": "AuditabilityAgent",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "AuditabilityAgent"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "describe"
+   ]
+  },
+  {
+   "id": "ag-rule/example_0__ca1__mc3",
+   "split": "test",
+   "type": "ag-rule",
+   "category": "decision",
+   "files": [
+    "agents/reference/example_0__ca1__mc3_prov.json"
+   ],
+   "producer": [
+    "yprov4agents"
+   ],
+   "phrasings": [
+    "Which rule produced the decision in example_0__ca1__mc3?",
+    "By what rule was the verdict of example_0__ca1__mc3 reached?",
+    "rule of example_0__ca1__mc3"
+   ],
+   "gold": "mc3.trail/v1",
+   "check": {
+    "type": "all_terms",
+    "terms": [
+     "mc3.trail/v1"
+    ]
+   },
+   "expect": "ACCEPT",
+   "needs": [
+    "decision"
+   ]
+  },
+  {
+   "id": "world-cup",
+   "split": "test",
+   "type": "world-cup",
+   "category": "out-of-scope",
+   "files": [],
+   "producer": [],
+   "phrasings": [
+    "Who won the 2022 World Cup?",
+    "Which team won the last football World Cup?",
+    "world cup winner"
+   ],
+   "gold": "OUT_OF_SCOPE",
+   "check": {
+    "type": "verdict",
+    "value": "OUT_OF_SCOPE"
+   },
+   "expect": "OUT_OF_SCOPE",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "backprop",
+   "split": "test",
+   "type": "backprop",
+   "category": "out-of-scope",
+   "files": [],
+   "producer": [],
+   "phrasings": [
+    "Explain backpropagation.",
+    "How does gradient descent train a network?",
+    "what is backprop"
+   ],
+   "gold": "OUT_OF_SCOPE",
+   "check": {
+    "type": "verdict",
+    "value": "OUT_OF_SCOPE"
+   },
+   "expect": "OUT_OF_SCOPE",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "tokyo-time",
+   "split": "test",
+   "type": "tokyo-time",
+   "category": "out-of-scope",
+   "files": [],
+   "producer": [],
+   "phrasings": [
+    "What time is it in Tokyo?",
+    "What is the time zone of Japan?",
+    "time in tokyo"
+   ],
+   "gold": "OUT_OF_SCOPE",
+   "check": {
+    "type": "verdict",
+    "value": "OUT_OF_SCOPE"
+   },
+   "expect": "OUT_OF_SCOPE",
+   "needs": [
+    "decline"
+   ]
+  },
+  {
+   "id": "laptop",
+   "split": "test",
+   "type": "laptop",
+   "category": "out-of-scope",
+   "files": [],
+   "producer": [],
+   "phrasings": [
+    "Recommend a laptop for deep learning.",
+    "Which GPU should I buy for training?",
+    "best laptop for ml"
+   ],
+   "gold": "OUT_OF_SCOPE",
+   "check": {
+    "type": "verdict",
+    "value": "OUT_OF_SCOPE"
+   },
+   "expect": "OUT_OF_SCOPE",
+   "needs": [
+    "decline"
+   ]
+  }
+ ]
+}
