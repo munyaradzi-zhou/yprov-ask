@@ -1,0 +1,214 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_0": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "StorageAgent"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_0_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: receive record from bus",
+      "prov:startTime": "2026-10-17T14:10:28.243416+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.243432+00:00"
+    },
+    "yp:PlanningActivity_example_0_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: await consumers, plan store path",
+      "prov:startTime": "2026-10-17T14:10:28.244368+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.244379+00:00",
+      "yp:persist_policy": "after-consume",
+      "yp:required_consumers": "cax,ca2,ca3",
+      "yp:acknowledged_by": "ca2,ca3,cax"
+    },
+    "yp:PersistActivity_example_0_02": {
+      "prov:type": {
+        "$": "yp:PersistActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: write to store (backend API)",
+      "prov:startTime": "2026-10-17T14:10:28.244368+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.246229+00:00",
+      "yp:store": "LightweightStore",
+      "yp:size_bytes": 21634
+    },
+    "yp:ObservationActivity_example_0_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: verify round-trip integrity",
+      "prov:startTime": "2026-10-17T14:10:28.245366+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.247144+00:00"
+    },
+    "yp:DecisionActivity_example_0_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: accept the stored record",
+      "prov:startTime": "2026-10-17T14:10:28.247366+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.247371+00:00",
+      "yp:justification": "Persisted at quorum: all expected consumers acknowledged; acknowledged by [ca2, ca3, cax], the full set required. Record carries 9 activities / 39 entities / 55 relations, 21634 bytes. Integrity: round-trip read verified; sha-256 matched. Verdict ACCEPT.",
+      "yp:persist_trigger": "quorum",
+      "yp:consumers_required": 3,
+      "yp:consumers_acknowledged": 3,
+      "yp:rule": "ca1.persist/v1",
+      "yp:rule_inputs": "{\"envelopes_missing\":0,\"final_envelope_seen\":true,\"integrity_ok\":true,\"persist_trigger\":\"quorum\"}",
+      "yp:verdict": "ACCEPT"
+    },
+    "yp:ResponseActivity_example_0_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: emit storage receipt",
+      "prov:startTime": "2026-10-17T14:10:28.247366+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.247375+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_0": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by StorageAgent",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_0": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "provenance record 'example_0' held for persistence"
+    },
+    "yp:ToolResultEntity_example_0": {
+      "prov:type": {
+        "$": "yp:ToolResultEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "stored provenance record for example_0",
+      "yp:pid": "21.T11999/yprovstore-abfe4946dd38",
+      "yp:contentHash": "sha256:abfe4946dd387821f67efcf9c38fd5173269803090dd589477f15c6e3ec1fd80"
+    },
+    "yp:ResponseEntity_example_0": {
+      "prov:type": {
+        "$": "yp:ResponseEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "storage receipt 21.T11999/yprovstore-abfe4946dd38 (sha256:abfe4946dd38...)"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ToolResultEntity_example_0",
+      "prov:usedEntity": "yp:TaskEntity_example_0"
+    },
+    "_:d1": {
+      "prov:generatedEntity": "yp:ResponseEntity_example_0",
+      "prov:usedEntity": "yp:ToolResultEntity_example_0"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_0_00",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_example_0_01",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a2": {
+      "prov:activity": "yp:PersistActivity_example_0_02",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_example_0_03",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_example_0_04",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_example_0_05",
+      "prov:agent": "yp:agent_example_0"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_example_0_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:PersistActivity_example_0_02",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_example_0_03",
+      "prov:informant": "yp:PersistActivity_example_0_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_example_0_04",
+      "prov:informant": "yp:PersistActivity_example_0_02"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_example_0_05",
+      "prov:informant": "yp:PersistActivity_example_0_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_example_0_01",
+      "prov:entity": "yp:TaskEntity_example_0"
+    },
+    "_:u2": {
+      "prov:activity": "yp:PersistActivity_example_0_02",
+      "prov:entity": "yp:TaskEntity_example_0"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_example_0_03",
+      "prov:entity": "yp:ToolResultEntity_example_0"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_example_0_04",
+      "prov:entity": "yp:ToolResultEntity_example_0"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_example_0_05",
+      "prov:entity": "yp:ToolResultEntity_example_0"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_0",
+      "prov:activity": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ToolResultEntity_example_0",
+      "prov:activity": "yp:PersistActivity_example_0_02"
+    },
+    "_:g5": {
+      "prov:entity": "yp:ResponseEntity_example_0",
+      "prov:activity": "yp:ResponseActivity_example_0_05"
+    }
+  }
+}

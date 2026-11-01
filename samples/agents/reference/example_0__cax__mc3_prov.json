@@ -1,0 +1,131 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_0::cax-mc3": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "AuditabilityAgent"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_0::cax-mc3_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: receive agent PROV",
+      "prov:startTime": "2026-10-17T14:10:27.480494+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.480504+00:00"
+    },
+    "yp:AuditActivity_example_0::cax-mc3_01": {
+      "prov:type": {
+        "$": "yp:AuditActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: audit NL_Summarizer",
+      "prov:startTime": "2026-10-17T14:10:27.480494+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.480533+00:00",
+      "yp:audited_agent": "NL_Summarizer",
+      "yp:step_count": 6,
+      "yp:justified_step_count": 1,
+      "yp:orderable_step_count": 6
+    },
+    "yp:DecisionActivity_example_0::cax-mc3_02": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: trail for NL_Summarizer is complete",
+      "prov:startTime": "2026-10-17T14:10:27.481491+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.481495+00:00",
+      "yp:justification": "Reconstructed the lifecycle of 'NL_Summarizer': 6 activities (1 justified) in order ReceiveTaskActivity -> PlanningActivity -> ToolCallActivity -> ObservationActivity -> DecisionActivity -> ResponseActivity. Every step carries a start and end time, so the who-did-what-when trail is fully ordered and timed. Verdict COMPLETE.",
+      "yp:audited_agent": "NL_Summarizer",
+      "yp:rule": "mc3.trail/v1",
+      "yp:rule_inputs": "{\"trail_gaps\":0}",
+      "yp:verdict": "COMPLETE"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_0::cax-mc3": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by AuditabilityAgent",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_0::cax-mc3": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "NL_Summarizer PROV under audit (example_0::cax)"
+    },
+    "yp:QualityEntity_example_0::cax-mc3": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "agent=NL_Summarizer; steps=6; justifications=1; trail=ReceiveTaskActivity -> PlanningActivity -> ToolCallActivity -> ObservationActivity -> DecisionActivity -> ResponseActivity"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:QualityEntity_example_0::cax-mc3",
+      "prov:usedEntity": "yp:TaskEntity_example_0::cax-mc3"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_0::cax-mc3_00",
+      "prov:agent": "yp:agent_example_0::cax-mc3"
+    },
+    "_:a1": {
+      "prov:activity": "yp:AuditActivity_example_0::cax-mc3_01",
+      "prov:agent": "yp:agent_example_0::cax-mc3"
+    },
+    "_:a2": {
+      "prov:activity": "yp:DecisionActivity_example_0::cax-mc3_02",
+      "prov:agent": "yp:agent_example_0::cax-mc3"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:AuditActivity_example_0::cax-mc3_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0::cax-mc3_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:DecisionActivity_example_0::cax-mc3_02",
+      "prov:informant": "yp:AuditActivity_example_0::cax-mc3_01"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:AuditActivity_example_0::cax-mc3_01",
+      "prov:entity": "yp:TaskEntity_example_0::cax-mc3"
+    },
+    "_:u2": {
+      "prov:activity": "yp:DecisionActivity_example_0::cax-mc3_02",
+      "prov:entity": "yp:QualityEntity_example_0::cax-mc3"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_0::cax-mc3",
+      "prov:activity": "yp:ReceiveTaskActivity_example_0::cax-mc3_00"
+    },
+    "_:g1": {
+      "prov:entity": "yp:QualityEntity_example_0::cax-mc3",
+      "prov:activity": "yp:AuditActivity_example_0::cax-mc3_01"
+    }
+  }
+}

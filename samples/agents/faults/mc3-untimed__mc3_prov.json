@@ -1,0 +1,131 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_fault-mc3": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "AuditabilityAgent"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_fault-mc3_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: receive agent PROV",
+      "prov:startTime": "2026-10-17T14:10:33.208942+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.208950+00:00"
+    },
+    "yp:AuditActivity_fault-mc3_01": {
+      "prov:type": {
+        "$": "yp:AuditActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: audit Rogue_Agent",
+      "prov:startTime": "2026-10-17T14:10:33.208942+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.208966+00:00",
+      "yp:audited_agent": "Rogue_Agent",
+      "yp:step_count": 1,
+      "yp:justified_step_count": 1,
+      "yp:orderable_step_count": 1
+    },
+    "yp:DecisionActivity_fault-mc3_02": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC3: trail for Rogue_Agent is partial",
+      "prov:startTime": "2026-10-17T14:10:33.208942+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.208946+00:00",
+      "yp:justification": "Reconstructed the lifecycle of 'Rogue_Agent': 1 activities (1 justified) in order DecisionActivity. Trail is not fully reconstructible: 1 activity(ies) carry no end time, so have no duration. Verdict PARTIAL.",
+      "yp:audited_agent": "Rogue_Agent",
+      "yp:rule": "mc3.trail/v1",
+      "yp:rule_inputs": "{\"trail_gaps\":1}",
+      "yp:verdict": "PARTIAL"
+    }
+  },
+  "entity": {
+    "yp:bundle_fault-mc3": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by AuditabilityAgent",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_fault-mc3": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "Rogue_Agent PROV under audit (fault)"
+    },
+    "yp:QualityEntity_fault-mc3": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "agent=Rogue_Agent; steps=1; justifications=1; trail=DecisionActivity"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:QualityEntity_fault-mc3",
+      "prov:usedEntity": "yp:TaskEntity_fault-mc3"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_fault-mc3_00",
+      "prov:agent": "yp:agent_fault-mc3"
+    },
+    "_:a1": {
+      "prov:activity": "yp:AuditActivity_fault-mc3_01",
+      "prov:agent": "yp:agent_fault-mc3"
+    },
+    "_:a2": {
+      "prov:activity": "yp:DecisionActivity_fault-mc3_02",
+      "prov:agent": "yp:agent_fault-mc3"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:AuditActivity_fault-mc3_01",
+      "prov:informant": "yp:ReceiveTaskActivity_fault-mc3_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:DecisionActivity_fault-mc3_02",
+      "prov:informant": "yp:AuditActivity_fault-mc3_01"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:AuditActivity_fault-mc3_01",
+      "prov:entity": "yp:TaskEntity_fault-mc3"
+    },
+    "_:u2": {
+      "prov:activity": "yp:DecisionActivity_fault-mc3_02",
+      "prov:entity": "yp:QualityEntity_fault-mc3"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_fault-mc3",
+      "prov:activity": "yp:ReceiveTaskActivity_fault-mc3_00"
+    },
+    "_:g1": {
+      "prov:entity": "yp:QualityEntity_fault-mc3",
+      "prov:activity": "yp:AuditActivity_fault-mc3_01"
+    }
+  }
+}

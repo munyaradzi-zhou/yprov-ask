@@ -1,0 +1,215 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_2": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Analytics_Agent"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_2_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: receive provenance graph",
+      "prov:startTime": "2026-10-17T14:10:28.376963+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.376972+00:00"
+    },
+    "yp:PlanningActivity_example_2_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: select analytics algorithms",
+      "prov:startTime": "2026-10-17T14:10:28.376963+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.376971+00:00",
+      "yp:algorithms": "structure,timing,sustainability,resource,anomaly"
+    },
+    "yp:AnalysisActivity_example_2_02": {
+      "prov:type": {
+        "$": "yp:AnalysisActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: mine the provenance graph",
+      "prov:startTime": "2026-10-17T14:10:28.376963+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.381040+00:00",
+      "yp:activities_analysed": 11,
+      "yp:entities_analysed": 78,
+      "yp:energy_streams": 33,
+      "yp:resource_streams": 18,
+      "yp:wall_clock_s": 112.53,
+      "yp:report_mode": "computed"
+    },
+    "yp:ObservationActivity_example_2_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: validate findings against invariants",
+      "prov:startTime": "2026-10-17T14:10:28.380962+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.380972+00:00"
+    },
+    "yp:DecisionActivity_example_2_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: ANOMALY",
+      "prov:startTime": "2026-10-17T14:10:28.380962+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.380966+00:00",
+      "yp:justification": "Applied 5 algorithms (structure, timing, sustainability, resource, anomaly) to a 11-activity / 78-entity graph. Breached invariants: timing: gap before 'Training' is 9.659s — 8.6% of the run's 112.530s wall clock, against a median inter-activity gap of 0.000s; timing: gap before 'CrossEntropyLoss/Training' is 102.870s — 91.4% of the run's 112.530s wall clock, against a median inter-activity gap of 0.000s. Separately, 2 completeness gap(s) in what the producer recorded: timing-completeness: 10 activity(ies) declare a start time but no end time (Training, Validation, Test...), so their durations are unknown; typing-completeness: 8 of 78 entities carry no prov:type (89.7% typed). Verdict ANOMALY.",
+      "yp:anomaly_count": 2,
+      "yp:completeness_gap_count": 2,
+      "yp:rule": "ca3.timing-outlier/v1",
+      "yp:rule_inputs": "{\"gap_count\":10,\"largest_gap_s\":102.869713,\"median_gap_s\":0.000238,\"scale_s\":7.8e-05,\"wall_clock_s\":112.53}",
+      "yp:verdict": "ANOMALY"
+    },
+    "yp:ResponseActivity_example_2_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA3: publish analytics report",
+      "prov:startTime": "2026-10-17T14:10:28.380962+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.380966+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_2": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by Analytics_Agent",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_2": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "provenance graph from producer.yprov4ml.example_2"
+    },
+    "yp:ToolResultEntity_example_2": {
+      "prov:type": {
+        "$": "yp:ToolResultEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "Provenance analytics for 'example_2': 11 activities and 78 entities (89.7% typed), 9 derivations, 70 terminal entities. Wall-clock span 112.53s across 11 ordered activities. Energy streams: 33; resource streams: 18. Anomalies: 2; completeness findings: 2.",
+      "yp:pid": "21.T11999/yprovstore-f59743e31274",
+      "yp:contentHash": "sha256:f59743e3127485c0abd83a109a71943c737ec774495d733d4f348311d2499a8d"
+    },
+    "yp:QualityEntity_example_2": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "2 invariant(s) breached, 2 completeness gap(s)"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ToolResultEntity_example_2",
+      "prov:usedEntity": "yp:TaskEntity_example_2"
+    },
+    "_:d1": {
+      "prov:generatedEntity": "yp:QualityEntity_example_2",
+      "prov:usedEntity": "yp:ToolResultEntity_example_2"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_2_00",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_example_2_01",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a2": {
+      "prov:activity": "yp:AnalysisActivity_example_2_02",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_example_2_03",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_example_2_04",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_example_2_05",
+      "prov:agent": "yp:agent_example_2"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_example_2_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:AnalysisActivity_example_2_02",
+      "prov:informant": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_example_2_03",
+      "prov:informant": "yp:AnalysisActivity_example_2_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_example_2_04",
+      "prov:informant": "yp:ObservationActivity_example_2_03"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_example_2_05",
+      "prov:informant": "yp:AnalysisActivity_example_2_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_example_2_01",
+      "prov:entity": "yp:TaskEntity_example_2"
+    },
+    "_:u2": {
+      "prov:activity": "yp:AnalysisActivity_example_2_02",
+      "prov:entity": "yp:TaskEntity_example_2"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_example_2_03",
+      "prov:entity": "yp:ToolResultEntity_example_2"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_example_2_04",
+      "prov:entity": "yp:QualityEntity_example_2"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_example_2_05",
+      "prov:entity": "yp:ToolResultEntity_example_2"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_2",
+      "prov:activity": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ToolResultEntity_example_2",
+      "prov:activity": "yp:AnalysisActivity_example_2_02"
+    },
+    "_:g3": {
+      "prov:entity": "yp:QualityEntity_example_2",
+      "prov:activity": "yp:ObservationActivity_example_2_03"
+    }
+  }
+}

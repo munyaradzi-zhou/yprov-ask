@@ -1,0 +1,215 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_fault": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "StorageAgent"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_fault_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: receive record from bus",
+      "prov:startTime": "2026-10-17T14:10:33.136809+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.136830+00:00"
+    },
+    "yp:PlanningActivity_fault_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: await consumers, plan store path",
+      "prov:startTime": "2026-10-17T14:10:33.136809+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.136822+00:00",
+      "yp:persist_policy": "after-consume",
+      "yp:required_consumers": "cax,ca2,ca3",
+      "yp:acknowledged_by": "(none)"
+    },
+    "yp:PersistActivity_fault_02": {
+      "prov:type": {
+        "$": "yp:PersistActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: write to store (backend API)",
+      "prov:startTime": "2026-10-17T14:10:33.136809+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.138659+00:00",
+      "yp:store": "LightweightStore",
+      "yp:size_bytes": 21634
+    },
+    "yp:ObservationActivity_fault_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: verify round-trip integrity",
+      "prov:startTime": "2026-10-17T14:10:33.138816+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.140305+00:00"
+    },
+    "yp:DecisionActivity_fault_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: escalate the stored record",
+      "prov:startTime": "2026-10-17T14:10:33.139816+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.139823+00:00",
+      "yp:justification": "Persisted WITHOUT confirmed consumption: timeout after 3.0s; no acknowledgement from ['ca2', 'ca3', 'cax']. Acknowledged by [none]; still waiting on [ca2, ca3, cax] when the record was archived anyway to avoid losing it. The persist-after-consume ordering was not satisfied, so this record is archived but its consumption is unconfirmed. Record carries 9 activities / 39 entities / 55 relations, 21634 bytes. Integrity: round-trip read verified; sha-256 matched. Verdict ESCALATE.",
+      "yp:persist_trigger": "timeout",
+      "yp:consumers_required": 3,
+      "yp:consumers_acknowledged": 0,
+      "yp:escalation_reason": "consumption-unconfirmed",
+      "yp:rule": "ca1.persist/v1",
+      "yp:rule_inputs": "{\"envelopes_missing\":0,\"final_envelope_seen\":true,\"integrity_ok\":true,\"persist_trigger\":\"timeout\"}",
+      "yp:verdict": "ESCALATE"
+    },
+    "yp:ResponseActivity_fault_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CA1: emit storage receipt",
+      "prov:startTime": "2026-10-17T14:10:33.139816+00:00",
+      "prov:endTime": "2026-10-17T14:10:33.139825+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_fault": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by StorageAgent",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_fault": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "provenance record 'fault' held for persistence"
+    },
+    "yp:ToolResultEntity_fault": {
+      "prov:type": {
+        "$": "yp:ToolResultEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "stored provenance record for fault",
+      "yp:pid": "21.T11999/yprovstore-abfe4946dd38",
+      "yp:contentHash": "sha256:abfe4946dd387821f67efcf9c38fd5173269803090dd589477f15c6e3ec1fd80"
+    },
+    "yp:ResponseEntity_fault": {
+      "prov:type": {
+        "$": "yp:ResponseEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "storage receipt 21.T11999/yprovstore-abfe4946dd38 (sha256:abfe4946dd38...)"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ToolResultEntity_fault",
+      "prov:usedEntity": "yp:TaskEntity_fault"
+    },
+    "_:d1": {
+      "prov:generatedEntity": "yp:ResponseEntity_fault",
+      "prov:usedEntity": "yp:ToolResultEntity_fault"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_fault_00",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_fault_01",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a2": {
+      "prov:activity": "yp:PersistActivity_fault_02",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_fault_03",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_fault_04",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_fault_05",
+      "prov:agent": "yp:agent_fault"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_fault_01",
+      "prov:informant": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:PersistActivity_fault_02",
+      "prov:informant": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_fault_03",
+      "prov:informant": "yp:PersistActivity_fault_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_fault_04",
+      "prov:informant": "yp:PersistActivity_fault_02"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_fault_05",
+      "prov:informant": "yp:PersistActivity_fault_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_fault_01",
+      "prov:entity": "yp:TaskEntity_fault"
+    },
+    "_:u2": {
+      "prov:activity": "yp:PersistActivity_fault_02",
+      "prov:entity": "yp:TaskEntity_fault"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_fault_03",
+      "prov:entity": "yp:ToolResultEntity_fault"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_fault_04",
+      "prov:entity": "yp:ToolResultEntity_fault"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_fault_05",
+      "prov:entity": "yp:ToolResultEntity_fault"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_fault",
+      "prov:activity": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ToolResultEntity_fault",
+      "prov:activity": "yp:PersistActivity_fault_02"
+    },
+    "_:g5": {
+      "prov:entity": "yp:ResponseEntity_fault",
+      "prov:activity": "yp:ResponseActivity_fault_05"
+    }
+  }
+}

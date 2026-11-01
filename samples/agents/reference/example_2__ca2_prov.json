@@ -1,0 +1,194 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_2": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics_Visualizer"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_2_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: receive producer record",
+      "prov:startTime": "2026-10-17T14:10:28.270859+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.270873+00:00"
+    },
+    "yp:PlanningActivity_example_2_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: choose what to plot",
+      "prov:startTime": "2026-10-17T14:10:28.270859+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.270912+00:00"
+    },
+    "yp:ToolCallActivity_example_2_02": {
+      "prov:type": {
+        "$": "yp:ToolCallActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: render chart (matplotlib)",
+      "prov:startTime": "2026-10-17T14:10:28.270859+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.369616+00:00"
+    },
+    "yp:ObservationActivity_example_2_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: confirm the chart reached disk",
+      "prov:startTime": "2026-10-17T14:10:28.368805+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.368862+00:00",
+      "yp:rendered_bytes": 12784
+    },
+    "yp:DecisionActivity_example_2_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: revise chart",
+      "prov:startTime": "2026-10-17T14:10:28.368805+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.368810+00:00",
+      "yp:justification": "The graph carries no numeric prov:value entities, so no measurement could be plotted; fell back to graph composition (11 activities / 78 entities / 98 relations), which describes the record rather than the run it documents. Wrote a non-empty png file to example_2_metrics.png with matplotlib; deterministic, no model involved. Verdict REVISE — the chart is valid but less informative than intended.",
+      "yp:chart_subject": "graph-composition",
+      "yp:series_plotted": 3,
+      "yp:rule": "ca2.chart/v1",
+      "yp:rule_inputs": "{\"chart_subject\":\"graph-composition\",\"rendered_bytes\":12784}",
+      "yp:verdict": "REVISE"
+    },
+    "yp:ResponseActivity_example_2_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "Metrics: respond",
+      "prov:startTime": "2026-10-17T14:10:28.368805+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.368808+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_2": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by Metrics_Visualizer",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_2": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "producer doc on producer.yprov4ml.example_2"
+    },
+    "yp:ToolResultEntity_example_2": {
+      "prov:type": {
+        "$": "yp:ToolResultEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "example_2_metrics.png",
+      "yp:pid": "21.T11999/yprovstore-4fc5c42c3594",
+      "yp:contentHash": "sha256:4fc5c42c359435b545fc6857ed0b34e4e151218d376c2274d1fe9e38882c9ac6"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ToolResultEntity_example_2",
+      "prov:usedEntity": "yp:TaskEntity_example_2"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_2_00",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_example_2_01",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a2": {
+      "prov:activity": "yp:ToolCallActivity_example_2_02",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_example_2_03",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_example_2_04",
+      "prov:agent": "yp:agent_example_2"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_example_2_05",
+      "prov:agent": "yp:agent_example_2"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_example_2_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:ToolCallActivity_example_2_02",
+      "prov:informant": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_example_2_03",
+      "prov:informant": "yp:ToolCallActivity_example_2_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_example_2_04",
+      "prov:informant": "yp:ToolCallActivity_example_2_02"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_example_2_05",
+      "prov:informant": "yp:ToolCallActivity_example_2_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_example_2_01",
+      "prov:entity": "yp:TaskEntity_example_2"
+    },
+    "_:u2": {
+      "prov:activity": "yp:ToolCallActivity_example_2_02",
+      "prov:entity": "yp:TaskEntity_example_2"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_example_2_03",
+      "prov:entity": "yp:ToolResultEntity_example_2"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_example_2_04",
+      "prov:entity": "yp:ToolResultEntity_example_2"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_example_2_05",
+      "prov:entity": "yp:ToolResultEntity_example_2"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_2",
+      "prov:activity": "yp:ReceiveTaskActivity_example_2_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ToolResultEntity_example_2",
+      "prov:activity": "yp:ToolCallActivity_example_2_02"
+    }
+  }
+}

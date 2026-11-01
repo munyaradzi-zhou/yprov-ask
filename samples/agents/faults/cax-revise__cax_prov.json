@@ -1,0 +1,221 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_fault": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "NL_Summarizer"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_fault_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: receive producer record",
+      "prov:startTime": "2026-10-17T14:10:34.739874+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.739887+00:00"
+    },
+    "yp:PlanningActivity_fault_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: scope the summary",
+      "prov:startTime": "2026-10-17T14:10:34.739874+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.739877+00:00"
+    },
+    "yp:ToolCallActivity_fault_02": {
+      "prov:type": {
+        "$": "yp:ToolCallActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: write NL summary",
+      "prov:startTime": "2026-10-17T14:10:34.739874+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.742528+00:00",
+      "yp:summary_mode": "llm",
+      "yp:model": "scripted",
+      "yp:temperature": 0.0,
+      "yp:max_tokens": 400,
+      "yp:llm_latency_s": 0.0,
+      "yp:response_sha": "ed7a5d75f58f",
+      "yp:prompt_id": "act.system",
+      "yp:prompt_version": "2.0",
+      "yp:prompt_sha": "3f831826f610",
+      "yp:prompt_tokens": 56,
+      "yp:completion_tokens": 13,
+      "yp:finish_reason": "stop"
+    },
+    "yp:ObservationActivity_fault_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: check the summary's figures against the graph",
+      "prov:startTime": "2026-10-17T14:10:34.742771+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.742809+00:00",
+      "yp:grounding_check": "numerals-against-graph-facts",
+      "yp:ungrounded_figure_count": 2
+    },
+    "yp:DecisionActivity_fault_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: revise summary",
+      "prov:startTime": "2026-10-17T14:10:34.742771+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.742775+00:00",
+      "yp:justification": "Summary of 54 characters produced by the llm path over a 8-activity / 6-entity graph. Figure(s) 4096, 512 appear in the summary but not in the graph's counts, so the text asserts something the record does not support. Verdict REVISE.",
+      "yp:summary_mode": "llm",
+      "yp:rule": "cax.summary/v1",
+      "yp:rule_inputs": "{\"truncated\":false,\"ungrounded_figures\":2}",
+      "yp:verdict": "REVISE"
+    },
+    "yp:ResponseActivity_fault_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: respond",
+      "prov:startTime": "2026-10-17T14:10:34.742771+00:00",
+      "prov:endTime": "2026-10-17T14:10:34.742774+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_fault": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by NL_Summarizer",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_fault": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "producer doc on producer.yprov4ml.fault"
+    },
+    "yp:ResponseEntity_fault": {
+      "prov:type": {
+        "$": "yp:ResponseEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "This run logged 4096 training steps across 512 epochs.",
+      "yp:pid": "21.T11999/yprovstore-ed7a5d75f58f",
+      "yp:contentHash": "sha256:ed7a5d75f58f9a7e069cc4b5da4c08fddb8534896f0aeb597e85576862ef54c3"
+    },
+    "yp:QualityEntity_fault": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "2 ungrounded figure(s)"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ResponseEntity_fault",
+      "prov:usedEntity": "yp:TaskEntity_fault"
+    },
+    "_:d1": {
+      "prov:generatedEntity": "yp:QualityEntity_fault",
+      "prov:usedEntity": "yp:ResponseEntity_fault"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_fault_00",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_fault_01",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a2": {
+      "prov:activity": "yp:ToolCallActivity_fault_02",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_fault_03",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_fault_04",
+      "prov:agent": "yp:agent_fault"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_fault_05",
+      "prov:agent": "yp:agent_fault"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_fault_01",
+      "prov:informant": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:ToolCallActivity_fault_02",
+      "prov:informant": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_fault_03",
+      "prov:informant": "yp:ToolCallActivity_fault_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_fault_04",
+      "prov:informant": "yp:ObservationActivity_fault_03"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_fault_05",
+      "prov:informant": "yp:ToolCallActivity_fault_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_fault_01",
+      "prov:entity": "yp:TaskEntity_fault"
+    },
+    "_:u2": {
+      "prov:activity": "yp:ToolCallActivity_fault_02",
+      "prov:entity": "yp:TaskEntity_fault"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_fault_03",
+      "prov:entity": "yp:ResponseEntity_fault"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_fault_04",
+      "prov:entity": "yp:QualityEntity_fault"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_fault_05",
+      "prov:entity": "yp:ResponseEntity_fault"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_fault",
+      "prov:activity": "yp:ReceiveTaskActivity_fault_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ResponseEntity_fault",
+      "prov:activity": "yp:ToolCallActivity_fault_02"
+    },
+    "_:g3": {
+      "prov:entity": "yp:QualityEntity_fault",
+      "prov:activity": "yp:ObservationActivity_fault_03"
+    }
+  }
+}

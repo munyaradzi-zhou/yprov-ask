@@ -1,0 +1,210 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_0": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "NL_Summarizer"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_0_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: receive producer record",
+      "prov:startTime": "2026-10-17T14:10:27.457233+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.457260+00:00"
+    },
+    "yp:PlanningActivity_example_0_01": {
+      "prov:type": {
+        "$": "yp:PlanningActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: scope the summary",
+      "prov:startTime": "2026-10-17T14:10:27.457233+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.457239+00:00"
+    },
+    "yp:ToolCallActivity_example_0_02": {
+      "prov:type": {
+        "$": "yp:ToolCallActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: write NL summary",
+      "prov:startTime": "2026-10-17T14:10:27.457233+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.460704+00:00",
+      "yp:summary_mode": "computed"
+    },
+    "yp:ObservationActivity_example_0_03": {
+      "prov:type": {
+        "$": "yp:ObservationActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: check the summary's figures against the graph",
+      "prov:startTime": "2026-10-17T14:10:27.460751+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.460797+00:00",
+      "yp:grounding_check": "numerals-against-graph-facts",
+      "yp:ungrounded_figure_count": 0
+    },
+    "yp:DecisionActivity_example_0_04": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: accept summary",
+      "prov:startTime": "2026-10-17T14:10:27.460751+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.460757+00:00",
+      "yp:justification": "Summary of 289 characters produced by the computed path over a 9-activity / 39-entity graph. Checked every figure of 10 or more against the graph's own counts: all supported. This establishes no invented figures, not that the summary is complete. Verdict ACCEPT.",
+      "yp:summary_mode": "computed",
+      "yp:rule": "cax.summary/v1",
+      "yp:rule_inputs": "{\"truncated\":false,\"ungrounded_figures\":0}",
+      "yp:verdict": "ACCEPT"
+    },
+    "yp:ResponseActivity_example_0_05": {
+      "prov:type": {
+        "$": "yp:ResponseActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "CAx: respond",
+      "prov:startTime": "2026-10-17T14:10:27.460751+00:00",
+      "prov:endTime": "2026-10-17T14:10:27.460755+00:00"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_0": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by NL_Summarizer",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_0": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "producer doc on producer.yprov4ml.example_0"
+    },
+    "yp:ResponseEntity_example_0": {
+      "prov:type": {
+        "$": "yp:ResponseEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "This ML provenance record captures 9 activities and 39 entities linked by 55 lineage relations. Tracked steps include example_GR0_0, Training, Validation, TrainingButDifferent, TrainingButDifferent2, MSELoss/Training. The graph documents inputs, parameters and outputs of the training run.",
+      "yp:pid": "21.T11999/yprovstore-65a1c9861559",
+      "yp:contentHash": "sha256:65a1c986155979d365657cccb313436b98af2f76692f5b0425176eef4a390d82"
+    },
+    "yp:QualityEntity_example_0": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "no ungrounded figures"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:ResponseEntity_example_0",
+      "prov:usedEntity": "yp:TaskEntity_example_0"
+    },
+    "_:d1": {
+      "prov:generatedEntity": "yp:QualityEntity_example_0",
+      "prov:usedEntity": "yp:ResponseEntity_example_0"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_0_00",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a1": {
+      "prov:activity": "yp:PlanningActivity_example_0_01",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a2": {
+      "prov:activity": "yp:ToolCallActivity_example_0_02",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a3": {
+      "prov:activity": "yp:ObservationActivity_example_0_03",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a4": {
+      "prov:activity": "yp:DecisionActivity_example_0_04",
+      "prov:agent": "yp:agent_example_0"
+    },
+    "_:a5": {
+      "prov:activity": "yp:ResponseActivity_example_0_05",
+      "prov:agent": "yp:agent_example_0"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:PlanningActivity_example_0_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:ToolCallActivity_example_0_02",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:i2": {
+      "prov:informed": "yp:ObservationActivity_example_0_03",
+      "prov:informant": "yp:ToolCallActivity_example_0_02"
+    },
+    "_:i3": {
+      "prov:informed": "yp:DecisionActivity_example_0_04",
+      "prov:informant": "yp:ObservationActivity_example_0_03"
+    },
+    "_:i4": {
+      "prov:informed": "yp:ResponseActivity_example_0_05",
+      "prov:informant": "yp:ToolCallActivity_example_0_02"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:PlanningActivity_example_0_01",
+      "prov:entity": "yp:TaskEntity_example_0"
+    },
+    "_:u2": {
+      "prov:activity": "yp:ToolCallActivity_example_0_02",
+      "prov:entity": "yp:TaskEntity_example_0"
+    },
+    "_:u3": {
+      "prov:activity": "yp:ObservationActivity_example_0_03",
+      "prov:entity": "yp:ResponseEntity_example_0"
+    },
+    "_:u4": {
+      "prov:activity": "yp:DecisionActivity_example_0_04",
+      "prov:entity": "yp:QualityEntity_example_0"
+    },
+    "_:u5": {
+      "prov:activity": "yp:ResponseActivity_example_0_05",
+      "prov:entity": "yp:ResponseEntity_example_0"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_0",
+      "prov:activity": "yp:ReceiveTaskActivity_example_0_00"
+    },
+    "_:g2": {
+      "prov:entity": "yp:ResponseEntity_example_0",
+      "prov:activity": "yp:ToolCallActivity_example_0_02"
+    },
+    "_:g3": {
+      "prov:entity": "yp:QualityEntity_example_0",
+      "prov:activity": "yp:ObservationActivity_example_0_03"
+    }
+  }
+}

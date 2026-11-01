@@ -1,0 +1,132 @@
+{
+  "prefix": {
+    "yp": "http://hpci-lab.org/yProv4Agents#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "agent": {
+    "yp:agent_example_0::ca1-mc1": {
+      "prov:type": {
+        "$": "yp:OperationalAgent",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "ComplianceChecker"
+    }
+  },
+  "activity": {
+    "yp:ReceiveTaskActivity_example_0::ca1-mc1_00": {
+      "prov:type": {
+        "$": "yp:ReceiveTaskActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC1: receive agent PROV",
+      "prov:startTime": "2026-10-17T14:10:28.249367+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.249376+00:00"
+    },
+    "yp:ComplianceCheckActivity_example_0::ca1-mc1_01": {
+      "prov:type": {
+        "$": "yp:ComplianceCheckActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC1: check ca1 compliance",
+      "prov:startTime": "2026-10-17T14:10:28.249367+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.249396+00:00",
+      "yp:target_agent": "ca1",
+      "yp:checks_applied": "namespace-declarations,typed-activities,decision-present,decision-justified",
+      "yp:standard": "vocab/shapes.ttl",
+      "yp:activities_examined": 6,
+      "yp:decisions_examined": 1
+    },
+    "yp:DecisionActivity_example_0::ca1-mc1_02": {
+      "prov:type": {
+        "$": "yp:DecisionActivity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "MC1: pass ca1",
+      "prov:startTime": "2026-10-17T14:10:28.249367+00:00",
+      "prov:endTime": "2026-10-17T14:10:28.249371+00:00",
+      "yp:justification": "Applied 4 structural checks (namespace-declarations, typed-activities, decision-present, decision-justified) to ca1's emitted PROV: 6 activities, 1 of them decisions. All structural checks passed. Verdict PASS.",
+      "yp:target_agent": "ca1",
+      "yp:rule": "mc1.compliance/v1",
+      "yp:rule_inputs": "{\"failed_checks\":0}",
+      "yp:verdict": "PASS"
+    }
+  },
+  "entity": {
+    "yp:bundle_example_0::ca1-mc1": {
+      "prov:type": {
+        "$": "prov:Bundle",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:label": "provenance record emitted by ComplianceChecker",
+      "yp:granularity": "DATA",
+      "yp:persistence": "PERSISTENT",
+      "yp:emitted_by": "yprov4agenticai",
+      "yp:library_version": "0.2.0"
+    },
+    "yp:TaskEntity_example_0::ca1-mc1": {
+      "prov:type": {
+        "$": "yp:TaskEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "ca1 PROV under review (example_0::ca1)"
+    },
+    "yp:QualityEntity_example_0::ca1-mc1": {
+      "prov:type": {
+        "$": "yp:QualityEntity",
+        "type": "prov:QUALIFIED_NAME"
+      },
+      "prov:value": "all structural checks held"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d0": {
+      "prov:generatedEntity": "yp:QualityEntity_example_0::ca1-mc1",
+      "prov:usedEntity": "yp:TaskEntity_example_0::ca1-mc1"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:a0": {
+      "prov:activity": "yp:ReceiveTaskActivity_example_0::ca1-mc1_00",
+      "prov:agent": "yp:agent_example_0::ca1-mc1"
+    },
+    "_:a1": {
+      "prov:activity": "yp:ComplianceCheckActivity_example_0::ca1-mc1_01",
+      "prov:agent": "yp:agent_example_0::ca1-mc1"
+    },
+    "_:a2": {
+      "prov:activity": "yp:DecisionActivity_example_0::ca1-mc1_02",
+      "prov:agent": "yp:agent_example_0::ca1-mc1"
+    }
+  },
+  "wasInformedBy": {
+    "_:i0": {
+      "prov:informed": "yp:ComplianceCheckActivity_example_0::ca1-mc1_01",
+      "prov:informant": "yp:ReceiveTaskActivity_example_0::ca1-mc1_00"
+    },
+    "_:i1": {
+      "prov:informed": "yp:DecisionActivity_example_0::ca1-mc1_02",
+      "prov:informant": "yp:ComplianceCheckActivity_example_0::ca1-mc1_01"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "yp:ComplianceCheckActivity_example_0::ca1-mc1_01",
+      "prov:entity": "yp:TaskEntity_example_0::ca1-mc1"
+    },
+    "_:u2": {
+      "prov:activity": "yp:DecisionActivity_example_0::ca1-mc1_02",
+      "prov:entity": "yp:QualityEntity_example_0::ca1-mc1"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g0": {
+      "prov:entity": "yp:TaskEntity_example_0::ca1-mc1",
+      "prov:activity": "yp:ReceiveTaskActivity_example_0::ca1-mc1_00"
+    },
+    "_:g1": {
+      "prov:entity": "yp:QualityEntity_example_0::ca1-mc1",
+      "prov:activity": "yp:ComplianceCheckActivity_example_0::ca1-mc1_01"
+    }
+  }
+}
