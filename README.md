@@ -44,10 +44,6 @@ flowchart LR
     R --> C
 ```
 
-When a file is open (as in the Explorer), the agent's tools are pinned to that document and a
-question about anything else is declined. The design is described in
-[`docs/architecture.md`](docs/architecture.md).
-
 ## Quick start
 
 Requires Python 3.11–3.13 and [uv](https://docs.astral.sh/uv/).
@@ -82,9 +78,7 @@ web component that embeds in any page:
 <yprov-ask endpoint="https://your-host/mcp" theme="light" style="height: 600px"></yprov-ask>
 ```
 
-A chat holds ten questions (`max-turns`); follow-ups see the earlier turns. Embedding in the
-Explorer, attributes and the JavaScript API are covered in
-[`docs/explorer-integration.md`](docs/explorer-integration.md).
+A chat holds ten questions (`max-turns`); follow-ups see the earlier turns.
 
 ### Web console and terminal chat
 
@@ -172,8 +166,6 @@ On frozen test splits, run once with `gpt-4o-mini`, three phrasings and three re
 | -------------------------------------- | ------------------------- | ------------------ | ---------------- |
 | 18 real yProv workflow files           | **94.8%** (734/774) | 5.1%               | 0                |
 | yProv4ML runs and yProv4Agents records | **88.3%** (437/495) | 11.4%              | 0                |
-
-Method, confidence intervals and error analysis: [`docs/evaluation.md`](docs/evaluation.md).
 
 ## Development
 

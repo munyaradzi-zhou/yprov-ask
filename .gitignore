@@ -28,3 +28,6 @@ emissions.csv
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Personal notes
+docs/*.md

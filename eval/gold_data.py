@@ -1,9 +1,8 @@
 """Gold answers for questions about the yProv files in ``data/``, read from the raw JSON.
 
 Deliberately independent of ``yprov_ask``: it does not use the store or the agent's
-tools, so a bug in a tool cannot also be in the gold answer (the circularity named in
-docs/evaluation.md). Every function takes a parsed PROV-JSON document
-and returns plain values.
+tools, so a bug in a tool cannot also be in the gold answer. Every function takes a
+parsed PROV-JSON document and returns plain values.
 
 Four producers write the files, recognised by their namespaces and attributes:
 
