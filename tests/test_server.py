@@ -82,3 +82,23 @@ def test_ask_returns_verdict_and_ingests_its_record(tmp_path):
             assert qa["title"].startswith("ProvenanceQA answer")
 
     anyio.run(main)
+
+
+def test_every_tool_declares_all_four_hints(tmp_path):
+    server, _ = _server(tmp_path)
+    expected = {
+        "ask": (False, False, False, True),
+        "open_file": (False, True, False, True),
+        "store_get": (False, True, True, True),
+        "ingest": (False, True, True, False),
+    }
+
+    async def main():
+        async with Client(server) as client:
+            for tool in (await client.list_tools()).tools:
+                a = tool.annotations
+                hints = (a.read_only_hint, a.destructive_hint, a.idempotent_hint, a.open_world_hint)
+                assert all(isinstance(h, bool) for h in hints), tool.name
+                assert hints == expected.get(tool.name, (True, False, True, False)), tool.name
+
+    anyio.run(main)

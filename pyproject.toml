@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling>=1.25"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
@@ -8,6 +8,8 @@ version = "0.1.0"
 description = "Ask questions in natural language about W3C PROV files (yProv4ML, yProv4Agents) through an MCP server backed by a LangGraph agent."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Munyaradzi Zhou", email = "munyaradzizhou11@gmail.com" }]
 keywords = ["provenance", "w3c-prov", "mcp", "langgraph", "yprov", "llm", "grounding"]
 classifiers = [

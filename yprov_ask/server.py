@@ -125,7 +125,10 @@ def build_server(
         version=__version__,
         log_level=settings.log_level,
     )
-    read_only = ToolAnnotations(readOnlyHint=True, openWorldHint=False)
+    # All four hints, explicit on every tool. The query tools only read the local store.
+    read_only = ToolAnnotations(
+        readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False
+    )
     for func in QUERY_TOOLS:
         server.add_tool(_bind(func, store), annotations=read_only)
 
@@ -197,7 +200,11 @@ def build_server(
                 )
         return agent["agent"]
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, openWorldHint=True))
+    @server.tool(
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=True
+        )
+    )
     async def ask(
         question: str,
         ctx: Context,
@@ -278,7 +285,11 @@ def build_server(
             out["file"] = {"doc_id": source.doc_id, "from": source.url}
         return out
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, openWorldHint=True))
+    @server.tool(
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=True, idempotentHint=False, openWorldHint=True
+        )
+    )
     async def open_file(url: str) -> dict[str, Any]:
         """Open one PROV-JSON file, by URL, for questions; returns its file_id for ask.
 
@@ -291,7 +302,11 @@ def build_server(
             raise AnticipatedToolError(str(exc)) from exc
         return opened(source, url.rstrip("/").rsplit("/", 1)[-1] or url, url)
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, openWorldHint=True))
+    @server.tool(
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=True, idempotentHint=True, openWorldHint=True
+        )
+    )
     async def store_get(url: str) -> dict[str, Any]:
         """Fetch a PROV-JSON file from the yProv store by URL, and add it to the store here.
 
@@ -309,7 +324,11 @@ def build_server(
             "total_documents": list_documents(store)["total"],
         }
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, openWorldHint=False))
+    @server.tool(
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=True, idempotentHint=True, openWorldHint=False
+        )
+    )
     async def ingest(path: str) -> dict[str, Any]:
         """Add a PROV-JSON file, or every .json file under a directory, to the store.
 

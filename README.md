@@ -156,6 +156,10 @@ Settings are read from the environment, or from a `.env` file in the working dir
 | `list_decisions`                       | no    | yProv4Agents decisions with their rule inputs                                                                               |
 | `open_file`, `store_get`, `ingest` | no    | add a file by URL, from an allowed store host, or from an allowed directory                                                 |
 
+Every tool declares all four MCP hints. The query tools are read-only, idempotent and closed-world.
+`ask` writes a record and calls the model. `open_file`, `store_get` and `ingest` are marked
+destructive because a changed file replaces its earlier copy in the store.
+
 Resources: `prov://documents` and `prov://documents/{doc_id}`.
 
 ## Development
@@ -191,3 +195,7 @@ tests/
 
 Built on the yProv provenance ecosystem of the
 [HPCI Lab](https://github.com/HPCI-Lab), University of Trento.
+
+## License
+
+[MIT](LICENSE)

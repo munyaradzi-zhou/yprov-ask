@@ -18,6 +18,9 @@ All notable changes to this project are documented here. The format follows
 - Single-file mode: uploads (`POST /files`) and URLs (`open_file`) pin the agent to one file.
 - Conversation memory across turns, keyed by a server-issued conversation id.
 - `<yprov-ask>` web component for the yProv Explorer, with a standalone demo page.
+- All four MCP tool hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`,
+  `openWorldHint`) declared explicitly on every tool.
+- MIT license.
 - Web console and terminal chat as MCP clients of the server.
 - Evaluation harness: computed gold answers, frozen test splits, scorers and audit sheets.
 - Docker image with a health check, CORS configuration and a non-root user.
